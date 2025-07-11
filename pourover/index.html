@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Guide to Pour-Over Coffee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Coffee -->
+    <!-- Application Structure Plan: The application is designed as an interactive dashboard. The primary interaction is selecting a coffee roast type via prominent buttons. This choice dynamically updates a central area containing both detailed text recommendations and a comparative bar chart. This task-oriented structure allows users to quickly get the information they need for their specific coffee, which is more usable than a linear document. Secondary information, like definitions and general tips, is placed in accessible but non-intrusive accordions at the bottom to avoid cluttering the main interface. This flow prioritizes the user's primary goal: finding brew settings for their coffee. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Core Philosophy -> Goal: Establish guiding principles -> Presentation: Static text cards with icons -> Interaction: None -> Justification: Always-visible foundational concepts.
+        - Report Info: Specific brewing parameters per roast -> Goal: Compare parameters for different roasts -> Presentation: Interactive buttons, dynamic text cards, and a dynamic bar chart -> Interaction: User clicks a roast-type button -> Justification: This is the core task. Buttons are intuitive selectors. The bar chart provides an immediate visual comparison of key variables (Temp, Agitation, Ratio) which is faster to parse than text alone. The dynamic text provides the necessary detail. Library: Chart.js (Canvas).
+        - Report Info: Definitions of variables & other tips -> Goal: Provide context and secondary info -> Presentation: Collapsible accordion sections -> Interaction: User clicks to expand/collapse -> Justification: Hides less critical information to keep the UI clean, but makes it easily available for users who need it. Method: HTML <details> tag.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 640px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .arrow-down {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <div class="container mx-auto max-w-5xl p-4 sm:p-6 lg:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-amber-900 mb-2">Interactive Guide to Pour-Over Coffee</h1>
+            <p class="text-lg text-stone-600">Based on principles from Lance Hendrick's guide to dialing in.</p>
+        </header>
+
+        <section id="philosophy" class="mb-12">
+            <h2 class="text-2xl font-bold text-center text-amber-800 mb-6">Core Philosophy</h2>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-4xl mb-3">📋</div>
+                    <h3 class="text-xl font-semibold mb-2">Consistency is Key</h3>
+                    <p class="text-stone-600">Stick to one recipe to truly understand how changing a single variable affects your brew.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-4xl mb-3">🔬</div>
+                    <h3 class="text-xl font-semibold mb-2">Incremental Adjustments</h3>
+                    <p class="text-stone-600">Avoid overcomplication. Make small, deliberate changes instead of overhauling your recipe.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-4xl mb-3">🧐</div>
+                    <h3 class="text-xl font-semibold mb-2">Observation is Crucial</h3>
+                    <p class="text-stone-600">Pay attention to the bloom, drawdown, and final taste to inform your next adjustment.</p>
+                </div>
+            </div>
+        </section>
+
+        <main id="interactive-brewer" class="bg-white p-6 sm:p-8 rounded-xl shadow-md mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-amber-800 mb-2">Brewing Recommendations</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">Select the roast level of your coffee to see the recommended starting points for key variables. This section provides a visual and textual guide to help you dial in your brew based on the type of coffee you're using.</p>
+            </div>
+            
+            <div id="controls" class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
+                <button id="light" class="brew-type-btn py-2 px-5 text-lg font-semibold rounded-full shadow-sm transition-all duration-200">Light Roast</button>
+                <button id="medium" class="brew-type-btn py-2 px-5 text-lg font-semibold rounded-full shadow-sm transition-all duration-200">Medium Roast</button>
+                <button id="dark" class="brew-type-btn py-2 px-5 text-lg font-semibold rounded-full shadow-sm transition-all duration-200">Dark Roast</button>
+                <button id="decaf" class="brew-type-btn py-2 px-5 text-lg font-semibold rounded-full shadow-sm transition-all duration-200">Decaf</button>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div id="recommendations" class="space-y-4">
+                    <div class="bg-stone-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg text-amber-900">🌡️ Water Temperature</h4>
+                        <p id="rec-temp" class="text-stone-700"></p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg text-amber-900">💧 Agitation</h4>
+                        <p id="rec-agitation" class="text-stone-700"></p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg text-amber-900">⚖️ Ratio</h4>
+                        <p id="rec-ratio" class="text-stone-700"></p>
+                    </div>
+                     <div class="bg-stone-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg text-amber-900">⏱️ Grind & Time</h4>
+                        <p id="rec-grind" class="text-stone-700"></p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="brewChart"></canvas>
+                </div>
+            </div>
+        </main>
+        
+        <section id="context" class="space-y-4">
+             <details class="bg-white rounded-lg shadow-sm group">
+                <summary class="p-4 cursor-pointer font-semibold text-lg flex justify-between items-center text-amber-800">
+                    General Variables Explained
+                    <span class="arrow-down transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-4 border-t border-stone-200 text-stone-600 space-y-3">
+                   <p><strong>Recipe:</strong> The overall process. A simple two-pour (bloom, then main pour) is a great, consistent starting point.</p>
+                   <p><strong>Ratio:</strong> The weight of coffee vs. water. A common start is 1:16.6 (15g coffee to 250g water), but this can be tightened (e.g., 1:15) for more developed roasts.</p>
+                   <p><strong>Grind Size:</strong> Start consistent and only change if needed. Too coarse can taste hollow/under-extracted; too fine can taste bitter/over-extracted.</p>
+                   <p><strong>Bloom:</strong> The initial pour to wet the grounds (typically 2-3x the coffee weight). It allows CO2 to escape. Fresher coffee needs a longer bloom.</p>
+                   <p><strong>Agitation:</strong> Stirring or swirling the coffee slurry, or the turbulence from the kettle. More agitation increases extraction.</p>
+                </div>
+            </details>
+            <details class="bg-white rounded-lg shadow-sm group">
+                <summary class="p-4 cursor-pointer font-semibold text-lg flex justify-between items-center text-amber-800">
+                    Other Important Considerations
+                    <span class="arrow-down transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-4 border-t border-stone-200 text-stone-600 space-y-3">
+                   <p><strong>Roast Date:</strong> Fresher beans are gassier and may need a longer bloom. Older beans might extract more easily and require lower temperatures.</p>
+                   <p><strong>Bean Density/Variety:</strong> Denser, harder beans (often light roasts) are less soluble and may need higher temperatures and more agitation.</p>
+                   <p><strong>Grinder Quality:</strong> A grinder producing many fine particles can lead to clogging and bitterness. If so, consider grinding coarser or using less agitation.</p>
+                   <p><strong>Filters:</strong> Some paper filters handle fines better and are less prone to stalling (e.g., Cafec, tabless Hario).</p>
+                </div>
+            </details>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const brewData = {
+                light: {
+                    temp: 'Higher (e.g., 96-97°C). Needed to properly extract dense, less soluble beans.',
+                    agitation: 'More Aggressive. A more turbulent pour or a final swirl helps increase extraction.',
+                    ratio: 'Standard (e.g., 1:16.6). Provides a good balance for delicate flavors.',
+                    grind: 'Longer bloom and contact time can be beneficial. Adjust grind cautiously.',
+                    chartValues: [3, 3, 2] 
+                },
+                medium: {
+                    temp: 'Slightly Lower (e.g., 95°C). Balances extraction without introducing roastiness.',
+                    agitation: 'Moderate. Less aggressive agitation is needed than for light roasts.',
+                    ratio: 'Standard or slightly tighter (e.g., 1:16). Adjust if you perceive any roastiness.',
+                    grind: 'Standard bloom and contact time. This is a good baseline to start from.',
+                    chartValues: [2, 2, 2]
+                },
+                dark: {
+                    temp: 'Lower (e.g., 92-93°C). Prevents extracting bitter, roasty notes.',
+                    agitation: 'Less Aggressive. A gentle pour is key to avoid over-extraction.',
+                    ratio: 'Tighter (e.g., 1:15). Less water helps control extraction and reduces bitterness.',
+                    grind: 'Standard bloom. Be mindful not to push extraction too far.',
+                    chartValues: [1, 1, 1]
+                },
+                decaf: {
+                    temp: 'Significantly Lower (e.g., 88°C). Decaf beans are more soluble and extract easily.',
+                    agitation: 'Very Gentle. These beans break down easily and can clog the filter.',
+                    ratio: 'Tighter (e.g., 1:14.6). A much tighter ratio is needed to avoid undesirable flavors.',
+                    grind: 'Grind Coarser. Decaf produces more fines, so a coarser grind is necessary to prevent stalling.',
+                    chartValues: [0, 0, 3] /* Corrected: Ratio Tightness for Decaf should be V. High (3) */
+                }
+            };
+
+            const recTemp = document.getElementById('rec-temp');
+            const recAgitation = document.getElementById('rec-agitation');
+            const recRatio = document.getElementById('rec-ratio');
+            const recGrind = document.getElementById('rec-grind');
+            const buttons = document.querySelectorAll('.brew-type-btn');
+
+            const ctx = document.getElementById('brewChart').getContext('2d');
+            const brewChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Temperature', 'Agitation', 'Ratio Tightness'],
+                    datasets: [{
+                        label: 'Brewing Approach',
+                        data: [],
+                        backgroundColor: [
+                            'rgba(120, 53, 15, 0.6)',
+                            'rgba(161, 98, 7, 0.6)',
+                            'rgba(217, 119, 6, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(120, 53, 15, 1)',
+                            'rgba(161, 98, 7, 1)',
+                            'rgba(217, 119, 6, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 3.5,
+                            ticks: {
+                                stepSize: 1,
+                                callback: function(value) {
+                                    const labels = ['Low', 'Medium', 'High', 'V. High'];
+                                    return labels[value] || '';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    }
+                }
+            });
+
+            function updateDisplay(type) {
+                const data = brewData[type];
+                
+                recTemp.textContent = data.temp;
+                recAgitation.textContent = data.agitation;
+                recRatio.textContent = data.ratio;
+                recGrind.textContent = data.grind;
+
+                brewChart.data.datasets[0].data = data.chartValues;
+                brewChart.update();
+
+                buttons.forEach(button => {
+                    if (button.id === type) {
+                        button.classList.add('bg-amber-800', 'text-white');
+                        button.classList.remove('bg-white', 'text-stone-800');
+                    } else {
+                        button.classList.add('bg-white', 'text-stone-800');
+                        button.classList.remove('bg-amber-800', 'text-white');
+                    }
+                });
+            }
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    updateDisplay(button.id);
+                });
+            });
+
+            updateDisplay('light');
+        });
+    </script>
+</body>
+</html>
+
