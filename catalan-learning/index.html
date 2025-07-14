@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Catalan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Catalan for Beginners  Catalan</h1>
+    </header>
+    <main>
+        <section id="grammar">
+            <h2>Essential Grammar Rules</h2>
+
+            <h3>Definite Articles (Els articles definits)</h3>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Singular</th>
+                    <th>Plural</th>
+                </tr>
+                <tr>
+                    <td><b>Masculine</b></td>
+                    <td>el / l'</td>
+                    <td>els</td>
+                </tr>
+                <tr>
+                    <td><b>Feminine</b></td>
+                    <td>la / l'</td>
+                    <td>les</td>
+                </tr>
+            </table>
+            <p class="note">Use <b>l'</b> before a word starting with a vowel or 'h'.</p>
+
+            <h3>Noun & Adjective Agreement</h3>
+            <p>Adjectives must agree in gender and number with the noun they describe.</p>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Masculine</th>
+                    <th>Feminine</th>
+                </tr>
+                <tr>
+                    <td><b>Singular</b></td>
+                    <td>el cotxe blanc (the white car)</td>
+                    <td>la casa blanca (the white house)</td>
+                </tr>
+                <tr>
+                    <td><b>Plural</b></td>
+                    <td>els cotxes blancs (the white cars)</td>
+                    <td>les cases blanques (the white houses)</td>
+                </tr>
+            </table>
+
+            <h3>Regular Verb Conjugations (Present Tense)</h3>
+            <div class="conjugation-tables">
+                <div class="verb-ending">
+                    <h4>-ar (e.g., parlar)</h4>
+                    <table>
+                        <tr><td>jo</td><td>parl<b>o</b></td></tr>
+                        <tr><td>tu</td><td>parl<b>es</b></td></tr>
+                        <tr><td>ell/ella</td><td>parl<b>a</b></td></tr>
+                        <tr><td>nosaltres</td><td>parl<b>em</b></td></tr>
+                        <tr><td>vosaltres</td><td>parl<b>eu</b></td></tr>
+                        <tr><td>ells/elles</td><td>parl<b>en</b></td></tr>
+                    </table>
+                </div>
+                <div class="verb-ending">
+                    <h4>-er/-re (e.g., témer)</h4>
+                     <table>
+                        <tr><td>jo</td><td>tem<b>o</b></td></tr>
+                        <tr><td>tu</td><td>tem<b>s</b></td></tr>
+                        <tr><td>ell/ella</td><td>tem</td></tr>
+                        <tr><td>nosaltres</td><td>tem<b>em</b></td></tr>
+                        <tr><td>vosaltres</td><td>tem<b>eu</b></td></tr>
+                        <tr><td>ells/elles</td><td>tem<b>en</b></td></tr>
+                    </table>
+                </div>
+                <div class="verb-ending">
+                    <h4>-ir (e.g., sentir)</h4>
+                     <table>
+                        <tr><td>jo</td><td>sent<b>o</b></td></tr>
+                        <tr><td>tu</td><td>sent<b>s</b></td></tr>
+                        <tr><td>ell/ella</td><td>sent</td></tr>
+                        <tr><td>nosaltres</td><td>sent<b>im</b></td></tr>
+                        <tr><td>vosaltres</td><td>sent<b>iu</b></td></tr>
+                        <tr><td>ells/elles</td><td>sent<b>en</b></td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="conjugator">
+            <h2>Verb Conjugator</h2>
+            <p>Select a verb to see its present tense conjugation.</p>
+            <select id="verb-select">
+                <option value="">-- Select a Verb --</option>
+            </select>
+            <div id="conjugation-result"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
