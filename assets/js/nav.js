@@ -15,12 +15,24 @@
         <a href="/">threepscoot</a>
     `;
 
-    if (path.includes('pourover')) {
+    if (path === '/coffee') {
       breadcrumbsHtml += `
         <span class="separator">/</span>
-        <span>hobbies</span>
+        <span style="color: var(--accent-coffee); font-weight: 500;">coffee-hub</span>
+      `;
+    } else if (path.includes('pourover')) {
+      breadcrumbsHtml += `
+        <span class="separator">/</span>
+        <a href="/coffee/">coffee</a>
         <span class="separator">/</span>
         <span style="color: var(--accent-coffee); font-weight: 500;">pourover</span>
+      `;
+    } else if (path.includes('espresso')) {
+      breadcrumbsHtml += `
+        <span class="separator">/</span>
+        <a href="/coffee/">coffee</a>
+        <span class="separator">/</span>
+        <span style="color: var(--accent-coffee); font-weight: 500;">espresso</span>
       `;
     } else if (path.includes('running-nutrition')) {
       breadcrumbsHtml += `
@@ -44,6 +56,8 @@
     }
     breadcrumbsHtml += `</div>`;
 
+    const isCoffeeActive = path.includes('coffee') || path.includes('pourover') || path.includes('espresso');
+
     const navHtml = `
       <nav class="ts-nav">
         <div class="ts-nav-container">
@@ -57,7 +71,7 @@
 
           <div class="ts-nav-links">
             <a href="/" class="ts-nav-link ${path === '/' ? 'active' : ''}">Home</a>
-            <a href="/pourover/" class="ts-nav-link ${path.includes('pourover') ? 'active' : ''}">
+            <a href="/coffee/" class="ts-nav-link ${isCoffeeActive ? 'active' : ''}">
               <span style="color: var(--accent-coffee)">☕</span> Coffee
             </a>
             <a href="/running-nutrition/" class="ts-nav-link ${path.includes('running-nutrition') ? 'active' : ''}">

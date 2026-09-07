@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espresso Lab: Dial-In & Recipes | Lance Hedrick Method | threepscoot</title>
+  
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .espresso-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 5rem;
+      width: 100%;
+    }
+
+    .recipe-tab-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-align: left;
+    }
+
+    .recipe-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .recipe-tab-btn.active {
+      background: var(--accent-coffee-surface);
+      color: var(--accent-coffee);
+      border-color: var(--accent-coffee);
+      box-shadow: 0 0 20px var(--accent-coffee-glow);
+    }
+
+    /* Relative Grind Gauge */
+    .gauge-track {
+      position: relative;
+      width: 100%;
+      height: 12px;
+      background: #1e293b;
+      border-radius: 6px;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .gauge-baseline-marker {
+      position: absolute;
+      top: -4px;
+      left: 20%;
+      width: 2px;
+      height: 20px;
+      background: #f8fafc;
+      z-index: 2;
+    }
+
+    .gauge-pin {
+      position: absolute;
+      top: -6px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #f59e0b;
+      border: 3px solid #090d16;
+      box-shadow: 0 0 12px #f59e0b;
+      transform: translateX(-50%);
+      transition: left var(--transition-normal);
+      z-index: 3;
+    }
+
+    details > summary {
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] summary .arrow-down {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Header Navigation -->
+  <div id="ts-nav-root"></div>
+
+  <!-- Main Container -->
+  <main class="espresso-container">
+    
+    <!-- Hero Header -->
+    <header class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-3" style="background: var(--accent-coffee-surface); color: var(--accent-coffee); border: 1px solid rgba(245, 158, 11, 0.25);">
+        <span>⚡</span> Pressurized Extraction & Modern Recipes
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+        Espresso Extraction Lab
+      </h1>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        Master dialing in fundamentals, puck prep fluid dynamics, and explore high-ratio modern shot recipes based on Lance Hedrick's guides.
+      </p>
+      <div class="mt-4">
+        <a href="/coffee/" class="text-xs text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1">
+          &larr; Switch to Coffee Hub (Pour-Over vs. Espresso)
+        </a>
+      </div>
+    </header>
+
+    <!-- SECTION 1: THE BASICS TO DIAL-IN FIRST -->
+    <section class="ts-card coffee-card mb-12 p-6 md:p-8">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="ts-badge ts-badge-coffee mb-2">Step 1: The Foundation</span>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Espresso Dial-In Basics</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Lance Hedrick's 3-step variable isolation hierarchy. Learn how to calibrate standard espresso before moving to specialty recipes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Foundation Variables Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">1. Fixed Dose (In)</div>
+          <div class="text-xl font-bold text-white font-mono">18.0 g</div>
+          <p class="text-xs text-slate-400 mt-1">Determined by your basket capacity (18g double basket). Never adjust dose while dialing.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">2. Target Yield (Out)</div>
+          <div class="text-xl font-bold text-white font-mono">36.0 g</div>
+          <p class="text-xs text-slate-400 mt-1">1:2 baseline ratio. Always manually stop your scale when it hits your target yield.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">3. Target Time Window</div>
+          <div class="text-xl font-bold text-white font-mono">25 – 30 s</div>
+          <p class="text-xs text-slate-400 mt-1">Diagnostic benchmark. If flow hits 36g in 27s, your flow resistance is calibrated.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">4. Primary Adjustment</div>
+          <div class="text-xl font-bold text-white font-mono">Grind Size</div>
+          <p class="text-xs text-slate-400 mt-1">The only variable you touch to move brew time into the 25–30s window.</p>
+        </div>
+      </div>
+
+      <!-- Puck Prep & Flow Diagnostics -->
+      <div class="grid lg:grid-cols-2 gap-6">
+        <!-- Puck Prep -->
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+          <h3 class="font-bold text-white text-sm flex items-center gap-2">
+            <span>🛠️</span> Puck Preparation: Eliminating Channelling
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            At 9 bars of pressure, water exploits any microscopic density unevenness in the coffee puck.
+          </p>
+          <ul class="text-xs text-slate-400 space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-bold">&bull;</span>
+              <span><strong>WDT (Weiss Distribution Technique):</strong> Use 0.3mm–0.4mm needles deep in the basket to break clumps and homogenize particle distribution from top to bottom.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-bold">&bull;</span>
+              <span><strong>Level Tamping:</strong> Tamp completely level and flat until the puck reaches mechanical resistance. <em>You cannot over-tamp coffee</em>; incomplete or slanted tamps cause severe edge channeling.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Flow Diagnostics -->
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+          <h3 class="font-bold text-white text-sm flex items-center gap-2">
+            <span>🔬</span> Shot Flow Diagnostics
+          </h3>
+          <div class="space-y-2 text-xs">
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
+              <div>
+                <span class="font-bold text-white">Flow Fast (&lt; 20s):</span>
+                <span class="text-slate-400 ml-1">Thin crema, sour, sharp, watery</span>
+              </div>
+              <span class="text-amber-400 font-mono font-bold">&rarr; Grind Finer</span>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
+              <div>
+                <span class="font-bold text-white">Flow Slow (&gt; 35s):</span>
+                <span class="text-slate-400 ml-1">Choking, dripping, harsh, bitter burn</span>
+              </div>
+              <span class="text-amber-400 font-mono font-bold">&rarr; Grind Coarser</span>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
+              <div>
+                <span class="font-bold text-white">Fast + Spraying:</span>
+                <span class="text-slate-400 ml-1">Blonde streaks, simultaneously sour & bitter</span>
+              </div>
+              <span class="text-sky-400 font-mono font-bold">&rarr; Fix WDT Prep</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE ESPRESSO RECIPE EXPLORER -->
+    <section class="ts-card coffee-card mb-12 p-6 md:p-8">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="ts-badge ts-badge-coffee mb-2">Step 2: Recipes & Ratios</span>
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Interactive Espresso Recipe Explorer</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Explore traditional to modern shot styles (based on Lance Hedrick's video on Allongé, Sprover, and Turbo Shots).
+          </p>
+        </div>
+      </div>
+
+      <!-- Dose Controls -->
+      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <label class="text-xs font-semibold text-slate-300">Dose In (g):</label>
+          <button class="dose-toggle active px-3 py-1 text-xs font-bold rounded-lg bg-amber-500 text-slate-950 border border-amber-500" data-dose="18">18g (Standard)</button>
+          <button class="dose-toggle px-3 py-1 text-xs font-bold rounded-lg bg-slate-900 text-slate-300 border border-slate-700 hover:border-amber-400" data-dose="15">15g (Single/Turbo)</button>
+          <button class="dose-toggle px-3 py-1 text-xs font-bold rounded-lg bg-slate-900 text-slate-300 border border-slate-700 hover:border-amber-400" data-dose="20">20g (Triple)</button>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-slate-400">Custom Slider:</span>
+          <input type="range" id="dose-slider" min="14" max="22" step="0.5" value="18" class="calc-slider w-32">
+          <span id="dose-display" class="font-mono text-sm font-bold text-amber-400">18.0g</span>
+        </div>
+      </div>
+
+      <!-- Recipe Selectors & Details Grid -->
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Recipe Buttons List -->
+        <div class="lg:col-span-4 space-y-2">
+          <button class="recipe-tab-btn w-full" data-recipe="ristretto">
+            <div class="font-bold text-sm text-white">Ristretto</div>
+            <div class="text-[11px] text-slate-400">1:1 – 1:1.5 &bull; Syrupy, thick, intense body</div>
+          </button>
+
+          <button class="recipe-tab-btn w-full active" data-recipe="normale">
+            <div class="font-bold text-sm text-white">Normale (Standard)</div>
+            <div class="text-[11px] text-slate-400">1:2 – 1:2.5 &bull; Baseline reference shot</div>
+          </button>
+
+          <button class="recipe-tab-btn w-full" data-recipe="lungo">
+            <div class="font-bold text-sm text-white">Lungo</div>
+            <div class="text-[11px] text-slate-400">1:3 – 1:3.5 &bull; Traditional extended extraction</div>
+          </button>
+
+          <button class="recipe-tab-btn w-full" data-recipe="turbo">
+            <div class="font-bold text-sm text-white">Turbo Shot ⚡</div>
+            <div class="text-[11px] text-slate-400">1:2.5 – 1:3 &bull; 12–16s &bull; 6 bar fast flow</div>
+          </button>
+
+          <button class="recipe-tab-btn w-full" data-recipe="allonge">
+            <div class="font-bold text-sm text-white">Allongé</div>
+            <div class="text-[11px] text-slate-400">1:4 – 1:5 &bull; High-extraction light roast favorite</div>
+          </button>
+
+          <button class="recipe-tab-btn w-full" data-recipe="sprover">
+            <div class="font-bold text-sm text-white">Sprover (Spro-over) ☕</div>
+            <div class="text-[11px] text-slate-400">1:10 – 1:12 &bull; Espresso-filter hybrid</div>
+          </button>
+        </div>
+
+        <!-- Recipe Deep-Dive Display Card -->
+        <div class="lg:col-span-8 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <!-- Header & Key Metrics -->
+            <div class="flex flex-wrap items-center justify-between pb-4 mb-4 border-b border-slate-800 gap-2">
+              <div>
+                <h3 id="rec-title" class="text-2xl font-bold text-white">Normale (Standard Espresso)</h3>
+                <div id="rec-ratio-str" class="text-xs text-amber-400 font-mono mt-0.5">Ratio: 1:2 (18.0g in &rarr; 36.0g out)</div>
+              </div>
+              <span id="rec-badge" class="ts-badge ts-badge-coffee font-mono text-xs">Standard Reference</span>
+            </div>
+
+            <!-- Visual Relative Grind Shift Gauge -->
+            <div class="mb-6 p-4 rounded-xl bg-slate-950 border border-slate-800">
+              <div class="flex justify-between items-center text-xs">
+                <span class="text-slate-300 font-semibold">Grind Size Relative to Dialed Standard Espresso:</span>
+                <span id="rec-grind-shift-text" class="font-mono font-bold text-amber-400">&plusmn;0 Baseline (Dialed)</span>
+              </div>
+
+              <!-- Visual Track -->
+              <div class="gauge-track">
+                <div class="gauge-baseline-marker" title="Baseline Standard Espresso"></div>
+                <div id="gauge-pin" class="gauge-pin" style="left: 20%;"></div>
+              </div>
+
+              <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                <span>-2 Finer (Ristretto)</span>
+                <span class="text-slate-300">Baseline (Normale)</span>
+                <span>+4 Coarser (Turbo/Allongé)</span>
+                <span>+10 Coarser (Sprover)</span>
+              </div>
+            </div>
+
+            <!-- Parameters Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">
+                <div class="text-[10px] text-slate-400 font-semibold uppercase">Dose In</div>
+                <div id="rec-dose-out" class="text-base font-bold text-white font-mono">18.0 g</div>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">
+                <div class="text-[10px] text-slate-400 font-semibold uppercase">Target Yield</div>
+                <div id="rec-yield-out" class="text-base font-bold text-amber-400 font-mono">36.0 g</div>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">
+                <div class="text-[10px] text-slate-400 font-semibold uppercase">Target Time</div>
+                <div id="rec-time-out" class="text-base font-bold text-sky-400 font-mono">25 – 30 s</div>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">
+                <div class="text-[10px] text-slate-400 font-semibold uppercase">Pressure Profile</div>
+                <div id="rec-pressure-out" class="text-base font-bold text-slate-200 font-mono">9 bar</div>
+              </div>
+            </div>
+
+            <!-- Commentary & Science -->
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800">
+                <span class="font-bold text-white">Flavor Profile: </span>
+                <span id="rec-flavor" class="text-slate-300">Balanced concentration of oils, aromatics, and caramelized sugars with velvety crema.</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800">
+                <span class="font-bold text-amber-400">Lance's Brewing Insight: </span>
+                <span id="rec-notes" class="text-slate-400">Always dial this in first with your bean before attempting higher ratio modern shots.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: SHOT TIMER & STOPWATCH -->
+    <section class="grid lg:grid-cols-12 gap-8 mb-12">
+      <div class="lg:col-span-6 ts-card coffee-card p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+              <span>⏱️</span> Shot Extraction Timer
+            </h3>
+            <span id="timer-target-pill" class="text-xs font-mono text-amber-400 bg-amber-950/40 px-2.5 py-1 rounded-full border border-amber-900/60">Target: 25-30s</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-6">
+            Time your shot from the moment pump activation begins until you cut the flow.
+          </p>
+
+          <div class="text-center py-6 bg-slate-900/80 rounded-2xl border border-slate-800 mb-6">
+            <div id="shot-timer-display" class="text-6xl font-extrabold font-mono text-white tracking-wider">00.0</div>
+            <div id="shot-timer-status" class="text-xs font-bold uppercase tracking-wider text-amber-400 mt-3">Ready to Pull</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button id="shot-timer-start" class="ts-btn ts-btn-primary flex-1">Start Shot Timer</button>
+          <button id="shot-timer-reset" class="ts-btn ts-btn-secondary">Reset</button>
+        </div>
+      </div>
+
+      <!-- Dial-In Tasting Log -->
+      <div class="lg:col-span-6 ts-card coffee-card p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+              <span>📓</span> Espresso Dial-In Log
+            </h3>
+            <div class="flex gap-2">
+              <button id="export-espresso-btn" class="ts-btn ts-btn-secondary text-[11px] py-1 px-2.5">Export JSON</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            <input type="text" id="log-bean" placeholder="Coffee Bean / Origin" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
+            <input type="text" id="log-grind" placeholder="Grinder setting (e.g. 14.5 / 2.1)" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
+          </div>
+          <div class="grid grid-cols-3 gap-2 mb-3">
+            <input type="text" id="log-inout" placeholder="18g in / 36g out" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
+            <input type="text" id="log-time" placeholder="Time (e.g. 27s)" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
+            <select id="log-result" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
+              <option value="Dialed In 🌟">Dialed In 🌟</option>
+              <option value="Fast / Sour">Fast / Sour</option>
+              <option value="Slow / Bitter">Slow / Bitter</option>
+              <option value="Channelling">Channelling</option>
+            </select>
+          </div>
+          <button id="save-espresso-log" class="ts-btn ts-btn-primary w-full text-xs font-bold py-2 mb-3">Save Extraction</button>
+
+          <div id="espresso-logs-list" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Accordions -->
+    <section class="space-y-4">
+      <details class="ts-card p-5 cursor-pointer">
+        <summary class="font-bold text-lg flex justify-between items-center text-amber-400">
+          <span>The Turbo Shot: Why Coarser & Faster Extracts More</span>
+          <span class="arrow-down transition-transform duration-300 text-xs text-slate-400">▼</span>
+        </summary>
+        <div class="pt-4 mt-4 border-t border-slate-800 text-slate-300 text-sm space-y-3 leading-relaxed">
+          <p>The Turbo Shot was mathematically modeled by Dr. Christopher Hendon and coffee researcher Michael Cameron, and widely popularized by Lance Hedrick. Traditional wisdom held that grinding finer always yields higher extraction.</p>
+          <p>However, once you grind finer than a critical threshold, uneven flow, local compaction, and fines clogging create micro-channels. Much of the bed is left under-extracted while the channels are over-extracted.</p>
+          <p>By grinding <strong>significantly coarser (+3 to +5 clicks)</strong> and pulling at <strong>6 bars of pressure</strong> for 12–16 seconds at a 1:2.5 to 1:3 ratio, water flows uniformly through every single ground particle. The result is a shot with zero astringency, stunning fruit sweetness, and an extraordinary 22%–24% extraction yield.</p>
+        </div>
+      </details>
+
+      <details class="ts-card p-5 cursor-pointer">
+        <summary class="font-bold text-lg flex justify-between items-center text-amber-400">
+          <span>Allongé & Sprover: Extending the Espresso Machine into Filter Territory</span>
+          <span class="arrow-down transition-transform duration-300 text-xs text-slate-400">▼</span>
+        </summary>
+        <div class="pt-4 mt-4 border-t border-slate-800 text-slate-300 text-sm space-y-3 leading-relaxed">
+          <p><strong>The Allongé (1:4 to 1:5 ratio)</strong> was popularized in Montreal by Scott Rao. Grinding coarser than standard espresso allows a long shot volume (e.g. 70g–90g out from 18g) without astringency. It highlights sparkling acidity and nuanced aromatics in ultra-light specialty coffees.</p>
+          <p><strong>The Sprover (1:10 to 1:12 ratio)</strong> pushes this to the extreme: using an espresso machine to brew a full filter-strength beverage in 45–60 seconds. Because the grind is much coarser (fine filter territory) and flow is gentle (often with low pressure or paper filters placed above/below the puck), you get pour-over clarity married with rich espresso sweetness and delicate micro-crema.</p>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="ts-footer">
+    <p>&copy; <span id="ts-year"></span> threepscoot &bull; Built with modern zero-build web standards &bull; <a href="https://github.com/oscarsaleta/oscarsaleta.github.io" target="_blank">GitHub</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/cmdk.js"></script>
+
+  <script>
+    document.getElementById('ts-year').textContent = new Date().getFullYear();
+
+    // Recipe Database
+    const recipes = {
+      ristretto: {
+        title: 'Ristretto Shot',
+        ratioMultiplier: 1.25,
+        ratioString: '1:1.25 (1:1 – 1:1.5)',
+        badge: 'Short & Syrupy',
+        timeString: '20 – 25 s',
+        pressure: '9 bar',
+        grindShiftText: '-1.5 Clicks Finer (vs. Standard)',
+        gaugePercent: '10%',
+        flavor: 'Heavy, syrupy mouthfeel, intense punch of caramelized sugars and chocolate, subdued acidity.',
+        notes: 'Grind slightly finer than standard to restrict flow and keep extraction concentrated.'
+      },
+      normale: {
+        title: 'Normale (Standard Espresso)',
+        ratioMultiplier: 2.0,
+        ratioString: '1:2.0 (1:2 – 1:2.5)',
+        badge: 'Standard Baseline',
+        timeString: '25 – 30 s',
+        pressure: '9 bar (or 6–9 bar)',
+        grindShiftText: '±0 Baseline (Dialed-In Standard)',
+        gaugePercent: '20%',
+        flavor: 'Harmonious balance of vibrant acidity, rich sweetness, and clean velvety crema.',
+        notes: 'Your reference benchmark. Always dial this in with your bean before experimenting with other recipes.'
+      },
+      lungo: {
+        title: 'Lungo Shot',
+        ratioMultiplier: 3.0,
+        ratioString: '1:3.0 (1:3 – 1:3.5)',
+        badge: 'Extended Extraction',
+        timeString: '30 – 35 s',
+        pressure: '9 bar',
+        grindShiftText: '+1.5 Clicks Coarser',
+        gaugePercent: '32%',
+        flavor: 'Higher extraction with lighter body; can introduce slight roasty bitterness on dark roasts.',
+        notes: 'Best suited for medium or light roasts to avoid pulling harsh tannins.'
+      },
+      turbo: {
+        title: 'Turbo Shot ⚡',
+        ratioMultiplier: 2.7,
+        ratioString: '1:2.7 (1:2.5 – 1:3)',
+        badge: 'High-Flow / 6 Bar',
+        timeString: '12 – 16 s',
+        pressure: '6 bar',
+        grindShiftText: '+4 Clicks Coarser (Fast Flow)',
+        gaugePercent: '48%',
+        flavor: 'Vibrant fruit sweetness, crystalline clarity, silky body, zero astringency or channel bitterness.',
+        notes: 'Grind significantly coarser. The fast flow at 6 bars extracts evenly without micro-channeling.'
+      },
+      allonge: {
+        title: 'Allongé Shot',
+        ratioMultiplier: 4.5,
+        ratioString: '1:4.5 (1:4 – 1:5)',
+        badge: 'Modern Long Extraction',
+        timeString: '25 – 35 s',
+        pressure: '6 – 9 bar',
+        grindShiftText: '+5.5 Clicks Coarser',
+        gaugePercent: '62%',
+        flavor: 'Sparkling, expressive cup highlighting terroir, floral notes, and delicate acids in ultra-light roasts.',
+        notes: 'Popularized in Montreal by Scott Rao. Excellent alternative to filter for single origin naturals.'
+      },
+      sprover: {
+        title: 'Sprover (Spro-over) ☕',
+        ratioMultiplier: 11.0,
+        ratioString: '1:11 (1:10 – 1:12)',
+        badge: 'Espresso-Filter Hybrid',
+        timeString: '45 – 60 s',
+        pressure: '1 – 2 bar / Low Flow',
+        grindShiftText: '+10 Clicks Coarser (Fine Filter)',
+        gaugePercent: '92%',
+        flavor: 'Filter coffee drinkability with intense sweetness, delicate micro-crema, and zero bitterness.',
+        notes: 'Use coarse espresso/fine filter grind and low pressure or a puck screen to prevent high pressure channeling.'
+      }
+    };
+
+    let activeRecipeKey = 'normale';
+    let currentDose = 18.0;
+
+    const recTitle = document.getElementById('rec-title');
+    const recRatioStr = document.getElementById('rec-ratio-str');
+    const recBadge = document.getElementById('rec-badge');
+    const recGrindShiftText = document.getElementById('rec-grind-shift-text');
+    const gaugePin = document.getElementById('gauge-pin');
+    const recDoseOut = document.getElementById('rec-dose-out');
+    const recYieldOut = document.getElementById('rec-yield-out');
+    const recTimeOut = document.getElementById('rec-time-out');
+    const recPressureOut = document.getElementById('rec-pressure-out');
+    const recFlavor = document.getElementById('rec-flavor');
+    const recNotes = document.getElementById('rec-notes');
+    const timerTargetPill = document.getElementById('timer-target-pill');
+    const doseDisplay = document.getElementById('dose-display');
+    const doseSlider = document.getElementById('dose-slider');
+
+    function updateRecipeDisplay() {
+      const rec = recipes[activeRecipeKey];
+      const yieldGrams = Math.round(currentDose * rec.ratioMultiplier);
+
+      recTitle.textContent = rec.title;
+      recRatioStr.textContent = `Ratio: ${rec.ratioString} (${currentDose.toFixed(1)}g in &rarr; ${yieldGrams}g out)`;
+      recBadge.textContent = rec.badge;
+      recGrindShiftText.textContent = rec.grindShiftText;
+      gaugePin.style.left = rec.gaugePercent;
+      recDoseOut.textContent = `${currentDose.toFixed(1)} g`;
+      recYieldOut.textContent = `${yieldGrams} g`;
+      recTimeOut.textContent = rec.timeString;
+      recPressureOut.textContent = rec.pressure;
+      recFlavor.textContent = rec.flavor;
+      recNotes.textContent = rec.notes;
+      timerTargetPill.textContent = `Target: ${rec.timeString}`;
+      doseDisplay.textContent = `${currentDose.toFixed(1)}g`;
+    }
+
+    // Recipe Tab Click
+    document.querySelectorAll('.recipe-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.recipe-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeRecipeKey = btn.dataset.recipe;
+        updateRecipeDisplay();
+      });
+    });
+
+    // Dose Toggles
+    document.querySelectorAll('.dose-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.dose-toggle').forEach(b => {
+          b.classList.remove('active', 'bg-amber-500', 'text-slate-950', 'border-amber-500');
+          b.classList.add('bg-slate-900', 'text-slate-300', 'border-slate-700');
+        });
+        btn.classList.add('active', 'bg-amber-500', 'text-slate-950', 'border-amber-500');
+        btn.classList.remove('bg-slate-900', 'text-slate-300', 'border-slate-700');
+
+        currentDose = parseFloat(btn.dataset.dose);
+        doseSlider.value = currentDose;
+        updateRecipeDisplay();
+      });
+    });
+
+    doseSlider.addEventListener('input', (e) => {
+      currentDose = parseFloat(e.target.value);
+      document.querySelectorAll('.dose-toggle').forEach(b => {
+        if (parseFloat(b.dataset.dose) === currentDose) {
+          b.classList.add('active', 'bg-amber-500', 'text-slate-950', 'border-amber-500');
+          b.classList.remove('bg-slate-900', 'text-slate-300', 'border-slate-700');
+        } else {
+          b.classList.remove('active', 'bg-amber-500', 'text-slate-950', 'border-amber-500');
+          b.classList.add('bg-slate-900', 'text-slate-300', 'border-slate-700');
+        }
+      });
+      updateRecipeDisplay();
+    });
+
+    updateRecipeDisplay();
+
+    // Shot Timer
+    let shotTimerInterval = null;
+    let shotTenths = 0;
+    const shotTimerDisplay = document.getElementById('shot-timer-display');
+    const shotTimerStatus = document.getElementById('shot-timer-status');
+    const shotTimerStart = document.getElementById('shot-timer-start');
+    const shotTimerReset = document.getElementById('shot-timer-reset');
+
+    shotTimerStart.addEventListener('click', () => {
+      if (shotTimerInterval) {
+        clearInterval(shotTimerInterval);
+        shotTimerInterval = null;
+        shotTimerStart.textContent = 'Resume Timer';
+        shotTimerStatus.textContent = 'Shot Stopped';
+        shotTimerStatus.style.color = '#38bdf8';
+      } else {
+        shotTimerInterval = setInterval(() => {
+          shotTenths++;
+          const sec = (shotTenths / 10).toFixed(1);
+          shotTimerDisplay.textContent = sec;
+          
+          if (sec < 5) {
+            shotTimerStatus.textContent = 'Pre-Infusion / Chamber Filling';
+            shotTimerStatus.style.color = '#fbbf24';
+          } else if (sec < 18) {
+            shotTimerStatus.textContent = 'Full Flow Rate Extraction';
+            shotTimerStatus.style.color = '#34d399';
+          } else if (sec < 32) {
+            shotTimerStatus.textContent = 'Final Blonding Phase';
+            shotTimerStatus.style.color = '#f59e0b';
+          } else {
+            shotTimerStatus.textContent = 'Extended Extraction Window';
+            shotTimerStatus.style.color = '#a78bfa';
+          }
+        }, 100);
+        shotTimerStart.textContent = 'Stop Shot';
+      }
+    });
+
+    shotTimerReset.addEventListener('click', () => {
+      clearInterval(shotTimerInterval);
+      shotTimerInterval = null;
+      shotTenths = 0;
+      shotTimerDisplay.textContent = '00.0';
+      shotTimerStatus.textContent = 'Ready to Pull';
+      shotTimerStatus.style.color = '#f59e0b';
+      shotTimerStart.textContent = 'Start Shot Timer';
+    });
+
+    // Espresso Dial-in LocalStorage Log
+    const ESPRESSO_STORAGE_KEY = 'threepscoot_espresso_logs';
+    let espressoLogs = [];
+    try {
+      espressoLogs = JSON.parse(localStorage.getItem(ESPRESSO_STORAGE_KEY)) || [];
+    } catch (e) { espressoLogs = []; }
+
+    function renderEspressoLogs() {
+      const list = document.getElementById('espresso-logs-list');
+      list.innerHTML = '';
+      if (espressoLogs.length === 0) {
+        list.innerHTML = '<div class="text-[11px] text-slate-500 py-3 text-center">No espresso extractions logged yet. Save your first shot above!</div>';
+        return;
+      }
+
+      espressoLogs.slice().reverse().forEach((item, idx) => {
+        const actualIdx = espressoLogs.length - 1 - idx;
+        const el = document.createElement('div');
+        el.className = 'p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between text-xs';
+        el.innerHTML = `
+          <div>
+            <div class="font-bold text-white">${item.bean || 'Specialty Espresso'} &bull; <span class="text-amber-400 font-mono">${item.grind}</span></div>
+            <div class="text-slate-400 mt-0.5">${item.inout} &bull; ${item.time} &bull; <span class="text-emerald-400 font-semibold">${item.result}</span></div>
+          </div>
+          <button class="text-slate-500 hover:text-red-400 p-1" onclick="deleteEspressoLog(${actualIdx})">&times;</button>
+        `;
+        list.appendChild(el);
+      });
+    }
+
+    window.deleteEspressoLog = function(index) {
+      espressoLogs.splice(index, 1);
+      localStorage.setItem(ESPRESSO_STORAGE_KEY, JSON.stringify(espressoLogs));
+      renderEspressoLogs();
+    };
+
+    document.getElementById('save-espresso-log').addEventListener('click', () => {
+      const bean = document.getElementById('log-bean').value.trim();
+      const grind = document.getElementById('log-grind').value.trim();
+      const inout = document.getElementById('log-inout').value.trim();
+      const time = document.getElementById('log-time').value.trim();
+      const result = document.getElementById('log-result').value;
+      if (!bean && !grind && !inout) return;
+
+      espressoLogs.push({
+        bean: bean || 'Ethiopian Natural',
+        grind: grind || '14.5 clicks',
+        inout: inout || '18g in / 36g out',
+        time: time || '27s',
+        result: result,
+        date: new Date().toLocaleDateString()
+      });
+
+      localStorage.setItem(ESPRESSO_STORAGE_KEY, JSON.stringify(espressoLogs));
+      document.getElementById('log-bean').value = '';
+      document.getElementById('log-grind').value = '';
+      document.getElementById('log-inout').value = '';
+      document.getElementById('log-time').value = '';
+      renderEspressoLogs();
+    });
+
+    document.getElementById('export-espresso-btn').addEventListener('click', () => {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(espressoLogs, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", `threepscoot_espresso_logs_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+
+    renderEspressoLogs();
+  </script>
+</body>
+</html>

@@ -7,13 +7,40 @@
   const COMMAND_ITEMS = [
     // Apps & Hobbies
     {
-      title: 'Pourover Coffee Lab',
-      subtitle: 'Ratio calculator, brew parameters & dial-in guide',
+      title: 'Coffee Hub (Pour-Over & Espresso)',
+      subtitle: 'Choose brewing discipline: gravity percolation vs pressurized extraction',
       category: 'Hobbies & Tools',
       badge: 'Coffee',
       badgeClass: 'ts-badge-coffee',
       icon: '☕',
+      url: '/coffee/'
+    },
+    {
+      title: 'Espresso Extraction Lab',
+      subtitle: 'Dial-in basics, puck prep & interactive recipes: Turbo, Allongé, Sprover',
+      category: 'Hobbies & Tools',
+      badge: 'Espresso',
+      badgeClass: 'ts-badge-coffee',
+      icon: '⚡',
+      url: '/espresso/'
+    },
+    {
+      title: 'Pourover Coffee Lab',
+      subtitle: 'Lance Hedrick 2-pour method, sensory compass & dial-in guide',
+      category: 'Hobbies & Tools',
+      badge: 'Filter',
+      badgeClass: 'ts-badge-coffee',
+      icon: '☕',
       url: '/pourover/'
+    },
+    {
+      title: 'Turbo Shot & Espresso Recipes',
+      subtitle: '6-bar fast extraction, relative grind shift gauge & ratio calculator',
+      category: 'Hobbies & Tools',
+      badge: 'Espresso',
+      badgeClass: 'ts-badge-coffee',
+      icon: '⚡',
+      url: '/espresso/'
     },
     {
       title: 'Endurance & Ultra Nutrition',
@@ -42,6 +69,15 @@
       badgeClass: 'ts-badge-kb',
       icon: '🧠',
       url: '/knowledge/'
+    },
+    {
+      title: 'Espresso Dial-In & High-Ratio Extractions',
+      subtitle: 'Lance Hedrick espresso fundamentals, puck prep fluid dynamics, and modern recipes',
+      category: 'Knowledge Base',
+      badge: 'Note',
+      badgeClass: 'ts-badge-coffee',
+      icon: '📄',
+      url: '/knowledge/#espresso-dialing-and-recipes'
     },
     {
       title: 'Ultra Marathon Nutrition & Carb Guide',

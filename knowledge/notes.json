@@ -1,5 +1,16 @@
 [
   {
+    "id": "espresso-dialing-and-recipes",
+    "title": "Espresso Dial-In Fundamentals & Modern Recipes",
+    "category": "Coffee",
+    "badgeClass": "ts-badge-coffee",
+    "tags": ["espresso", "dial-in", "turbo-shot", "allonge", "sprover", "wdt", "recipes"],
+    "summary": "Lance Hedrick espresso dialing methodology: the 4 foundation constants, puck prep fluid dynamics, and modern high-ratio extractions relative to baseline grind.",
+    "readTime": "5 min read",
+    "date": "2026-09",
+    "file": "content/espresso-dialing-and-recipes.md"
+  },
+  {
     "id": "ultra-training-protocols",
     "title": "Ultra Marathon Fueling & Gut Training Protocols",
     "category": "Running",
