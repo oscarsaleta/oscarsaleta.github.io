@@ -10,51 +10,59 @@
     const path = window.location.pathname.replace(/\/$/, '') || '/';
     
     // Determine active links and breadcrumb items
-    let breadcrumbsHtml = `
-      <div class="ts-breadcrumbs">
-        <a href="/">threepscoot</a>
-    `;
+    let breadcrumbsHtml = '';
 
     if (path === '/coffee') {
-      breadcrumbsHtml += `
-        <span class="separator">/</span>
-        <span style="color: var(--accent-coffee); font-weight: 500;">coffee-hub</span>
+      breadcrumbsHtml = `
+        <div class="ts-breadcrumbs">
+          <span class="separator">/</span>
+          <span class="ts-breadcrumb-current" style="color: var(--accent-coffee); font-weight: 500;">coffee-hub</span>
+        </div>
       `;
     } else if (path.includes('pourover')) {
-      breadcrumbsHtml += `
-        <span class="separator">/</span>
-        <a href="/coffee/">coffee</a>
-        <span class="separator">/</span>
-        <span style="color: var(--accent-coffee); font-weight: 500;">pourover</span>
+      breadcrumbsHtml = `
+        <div class="ts-breadcrumbs">
+          <span class="separator ts-breadcrumb-intermediate">/</span>
+          <a href="/coffee/" class="ts-breadcrumb-intermediate">coffee</a>
+          <span class="separator">/</span>
+          <span class="ts-breadcrumb-current" style="color: var(--accent-coffee); font-weight: 500;">pourover</span>
+        </div>
       `;
     } else if (path.includes('espresso')) {
-      breadcrumbsHtml += `
-        <span class="separator">/</span>
-        <a href="/coffee/">coffee</a>
-        <span class="separator">/</span>
-        <span style="color: var(--accent-coffee); font-weight: 500;">espresso</span>
+      breadcrumbsHtml = `
+        <div class="ts-breadcrumbs">
+          <span class="separator ts-breadcrumb-intermediate">/</span>
+          <a href="/coffee/" class="ts-breadcrumb-intermediate">coffee</a>
+          <span class="separator">/</span>
+          <span class="ts-breadcrumb-current" style="color: var(--accent-coffee); font-weight: 500;">espresso</span>
+        </div>
       `;
     } else if (path.includes('running-nutrition')) {
-      breadcrumbsHtml += `
-        <span class="separator">/</span>
-        <span>hobbies</span>
-        <span class="separator">/</span>
-        <span style="color: var(--accent-running); font-weight: 500;">running-nutrition</span>
+      breadcrumbsHtml = `
+        <div class="ts-breadcrumbs">
+          <span class="separator ts-breadcrumb-intermediate">/</span>
+          <span class="ts-breadcrumb-intermediate">hobbies</span>
+          <span class="separator">/</span>
+          <span class="ts-breadcrumb-current" style="color: var(--accent-running); font-weight: 500;">running-nutrition</span>
+        </div>
       `;
     } else if (path.includes('catalan-learning')) {
-      breadcrumbsHtml += `
-        <span class="separator">/</span>
-        <span>hobbies</span>
-        <span class="separator">/</span>
-        <span style="color: var(--accent-catalan); font-weight: 500;">catalan-learning</span>
+      breadcrumbsHtml = `
+        <div class="ts-breadcrumbs">
+          <span class="separator ts-breadcrumb-intermediate">/</span>
+          <span class="ts-breadcrumb-intermediate">hobbies</span>
+          <span class="separator">/</span>
+          <span class="ts-breadcrumb-current" style="color: var(--accent-catalan); font-weight: 500;">catalan-learning</span>
+        </div>
       `;
     } else if (path.includes('knowledge')) {
-      breadcrumbsHtml += `
-        <span class="separator">/</span>
-        <span style="color: var(--accent-kb); font-weight: 500;">knowledge-base</span>
+      breadcrumbsHtml = `
+        <div class="ts-breadcrumbs">
+          <span class="separator">/</span>
+          <span class="ts-breadcrumb-current" style="color: var(--accent-kb); font-weight: 500;">knowledge-base</span>
+        </div>
       `;
     }
-    breadcrumbsHtml += `</div>`;
 
     const isCoffeeActive = path.includes('coffee') || path.includes('pourover') || path.includes('espresso');
 
@@ -64,7 +72,7 @@
           <div class="ts-nav-brand-group">
             <a href="/" class="ts-nav-brand">
               <span class="status-beacon"></span>
-              threepscoot
+              <span class="ts-nav-brand-text">threepscoot</span>
             </a>
             ${breadcrumbsHtml}
           </div>
@@ -91,7 +99,7 @@
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <span>Search</span>
+              <span class="ts-cmdk-trigger-text">Search</span>
               <span class="ts-kbd">⌘K</span>
             </button>
           </div>
