@@ -169,6 +169,19 @@ When adding or modifying coffee-related pages:
   - Sodium intake: 500–1,000mg/L depending on sweat rate and heat.
   - Plant-based whole-food recommendations alongside functional sports nutrition (gels, drink mix).
 
+### D. Mobile Responsiveness & 320px Viewport Rule (CRITICAL)
+- **Minimum Viewport Target (320px):** Every page, interactive component, and header must render cleanly down to a **320px viewport width** (e.g. Zen / Firefox / Safari Responsive Design Mode at `320 × 480`) with **zero horizontal scrolling** and no right-side whitespace gap.
+- **Multi-Tier Navigation Collapse:**
+  - On viewports `<= 640px` (`sm:` breakpoint), search text and keyboard badges hide (`hidden sm:inline`, `hidden sm:inline-block`), intermediate breadcrumb levels hide (`hidden sm:inline`), and the search trigger wrapper has `shrink-0`.
+  - On viewports `<= 400px`, `.ts-nav-brand-text` collapses on subpages, preserving the status beacon `•` as the home link (`• / subpage   [ 🔍 ]`), keeping the top bar well under 150px.
+- **Intrinsic Width Pitfalls (Flex & Monospace):**
+  - Never place multiple monospace labels or long strings across a single non-wrapping flex row (e.g. gauge tracks, step indicators). If 4 strings add up to >250px, flexbox will force container expansion. Use `<span class="hidden sm:inline">` to abbreviate labels on mobile.
+  - Form input rows must stack on mobile: use `grid-cols-1 sm:grid-cols-2` or `grid-cols-1 sm:grid-cols-3`, never fixed multi-column grids.
+  - Keep mobile container padding moderate (`padding: 1.25rem 0.75rem` at `<= 640px`). Heavy padding (`p-6` or `p-8`) consumes precious screen width on 320px devices.
+- **Dev Server & Asset Caching Quirks:**
+  - Standard `python3 -m http.server` sends no cache headers, causing aggressive browser caching of CSS and JS. Always use `just run-local`, which serves with `Cache-Control: no-store, no-cache, must-revalidate, max-age=0`.
+  - When modifying shared stylesheets or scripts, maintain version query parameters (`/assets/css/main.css?v=2`, `/assets/js/nav.js?v=2`, etc.) across all HTML files.
+
 ---
 
 ## 7. Step-by-Step Playbooks for Agents
@@ -204,28 +217,24 @@ When adding or modifying coffee-related pages:
 
 ### Playbook 2: Adding a New Page or Interactive Tool
 1. **Create `<slug>/index.html`:**
-   - Include `<head>` with viewport, Inter/JetBrains Mono fonts, `assets/css/main.css`, and Tailwind CDN.
+   - Include `<head>` with viewport, Inter/JetBrains Mono fonts, `assets/css/main.css?v=...`, and Tailwind CDN.
+   - Include mobile container padding override (`@media (max-width: 640px)`).
    - Add `<div id="ts-nav-root"></div>` at the top of `<body>`.
-   - Add `<script src="/assets/js/nav.js"></script>` and `<script src="/assets/js/cmdk.js"></script>` before `</body>`.
+   - Add `<script src="/assets/js/nav.js?v=..."></script>` and `<script src="/assets/js/cmdk.js?v=..."></script>` before `</body>`.
 2. **Update Global Nav:**
-   - In `assets/js/nav.js`, add breadcrumb handling in `generateNav()` for the new path.
+   - In `assets/js/nav.js`, add breadcrumb handling in `generateNav()` for the new path with `hidden sm:inline` on intermediate steps.
    - If it's a top-level hobby, add a navigation link in the desktop and mobile nav sections.
 3. **Update Command Palette:** Add 1–2 entries in `assets/js/cmdk.js` targeting the new tool and its features.
 4. **Update Homepage:** Add a hobby card in `index.html` inside `.hobbies-grid`.
 
 ### Playbook 3: Verification Before Submitting
-1. **Strict HTML Syntax Check:** Run a validation script via Python's `html.parser`:
+1. **Run Project Check Suite:**
    ```bash
-   python3 -c "from html.parser import HTMLParser; p=HTMLParser(); p.feed(open('path/to/file.html').read()); print('Valid!')"
+   just check
    ```
-2. **JSON Validation:** Verify `knowledge/notes.json`:
-   ```bash
-   python3 -c "import json; json.load(open('knowledge/notes.json')); print('Valid JSON!')"
-   ```
-3. **Entity Audit:** Ensure no unwanted entity strings are in code:
-   ```bash
-   git grep -n -E "(&(r|l|u|d)arr;|&plusmn;|&ne;)"
-   ```
+   This automatically validates HTML parsing, `knowledge/notes.json` syntax, and audits forbidden HTML entities.
+2. **Mobile Viewport Audit:**
+   Run `just run-local` and inspect the pages in Zen, Firefox, or Safari Responsive Design Mode at `320 × 480`. Confirm zero horizontal overflow, no right-side gap, and clean collapse of navigation items.
 
 ---
 

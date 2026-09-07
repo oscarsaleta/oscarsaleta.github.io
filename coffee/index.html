@@ -6,7 +6,7 @@
   <title>Coffee Hub: Pour-Over & Espresso | threepscoot</title>
   
   <!-- Shared Design System -->
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
@@ -20,6 +20,12 @@
       margin: 0 auto;
       padding: 3rem 1.25rem 5rem;
       width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .coffee-hub-container {
+        padding: 1.5rem 0.75rem 4rem;
+      }
     }
 
     .discipline-card {
@@ -62,7 +68,7 @@
     <div class="grid md:grid-cols-2 gap-8 mb-16">
       
       <!-- Pour-Over Filter Lab -->
-      <a href="/pourover/" class="ts-card coffee-card discipline-card p-8">
+      <a href="/pourover/" class="ts-card coffee-card discipline-card p-5 sm:p-8">
         <div>
           <div class="flex items-start justify-between mb-6">
             <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background: var(--accent-coffee-surface); color: var(--accent-coffee); border: 1px solid rgba(245, 158, 11, 0.2);">
@@ -78,19 +84,19 @@
 
           <ul class="text-xs text-slate-400 space-y-2 mb-6">
             <li class="flex items-center gap-2">
-              <span class="text-amber-400 font-bold">&bull;</span>
+              <span class="text-amber-400 font-bold">•</span>
               <span><strong>Sensory Compass:</strong> Sour vs. Astringent vs. Bitter troubleshooting.</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-amber-400 font-bold">&bull;</span>
+              <span class="text-amber-400 font-bold">•</span>
               <span><strong>Lance's 2-Pour Recipe:</strong> 3x Bloom + Single continuous pour.</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-amber-400 font-bold">&bull;</span>
+              <span class="text-amber-400 font-bold">•</span>
               <span><strong>Phase Stopwatch:</strong> Bloom degassing and drawdown tracker.</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-amber-400 font-bold">&bull;</span>
+              <span class="text-amber-400 font-bold">•</span>
               <span><strong>Dial-In Journal:</strong> Track bean adjustments across brews.</span>
             </li>
           </ul>
@@ -103,7 +109,7 @@
       </a>
 
       <!-- Espresso Extraction Lab -->
-      <a href="/espresso/" class="ts-card coffee-card discipline-card p-8">
+      <a href="/espresso/" class="ts-card coffee-card discipline-card p-5 sm:p-8">
         <div>
           <div class="flex items-start justify-between mb-6">
             <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);">
@@ -146,7 +152,7 @@
     </div>
 
     <!-- Comparative Physics Breakdown -->
-    <section class="ts-card p-6 md:p-8">
+    <section class="ts-card p-4 sm:p-6 md:p-8">
       <div class="flex items-center gap-3 mb-6">
         <h3 class="text-xl font-bold text-white">Percolation vs. Pressurized Extraction</h3>
         <span class="h-0.5 flex-1 bg-gradient-to-r from-amber-500/40 to-transparent"></span>
@@ -169,8 +175,8 @@
             </tr>
             <tr>
               <td class="py-3 px-4 font-semibold text-white">Typical Grind Particle Size</td>
-              <td class="py-3 px-4">Medium-fine to medium (500–800 &mu;m)</td>
-              <td class="py-3 px-4 font-mono text-amber-300">Fine to extra-fine (150–350 &mu;m)</td>
+              <td class="py-3 px-4">Medium-fine to medium (500–800 µm)</td>
+              <td class="py-3 px-4 font-mono text-amber-300">Fine to extra-fine (150–350 µm)</td>
             </tr>
             <tr>
               <td class="py-3 px-4 font-semibold text-white">Standard Brew Ratio</td>
@@ -205,8 +211,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="/assets/js/nav.js"></script>
-  <script src="/assets/js/cmdk.js"></script>
+  <script src="/assets/js/nav.js?v=2"></script>
+  <script src="/assets/js/cmdk.js?v=2"></script>
   <script>
     document.getElementById('ts-year').textContent = new Date().getFullYear();
   </script>

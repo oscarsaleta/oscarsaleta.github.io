@@ -6,7 +6,7 @@
   <title>Espresso Lab: Dial-In & Recipes | Lance Hedrick Method | threepscoot</title>
   
   <!-- Shared Design System -->
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
@@ -20,6 +20,12 @@
       margin: 0 auto;
       padding: 2rem 1.25rem 5rem;
       width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .espresso-container {
+        padding: 1.25rem 0.75rem 4rem;
+      }
     }
 
     .recipe-tab-btn {
@@ -121,7 +127,7 @@
     </header>
 
     <!-- SECTION 1: THE BASICS TO DIAL-IN FIRST -->
-    <section class="ts-card coffee-card mb-12 p-6 md:p-8">
+    <section class="ts-card coffee-card mb-12 p-4 sm:p-6 md:p-8">
       <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
           <span class="ts-badge ts-badge-coffee mb-2">Step 1: The Foundation</span>
@@ -162,7 +168,7 @@
       <!-- Puck Prep & Flow Diagnostics -->
       <div class="grid lg:grid-cols-12 gap-6">
         <!-- Puck Prep -->
-        <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
+        <div class="lg:col-span-6 p-4 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
           <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
             <span>🛡️</span> Puck Prep Checklist (Channel Prevention)
           </h3>
@@ -193,7 +199,7 @@
         </div>
 
         <!-- Flow Diagnostics -->
-        <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+        <div class="lg:col-span-6 p-4 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
           <div>
             <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
               <span>⏱️</span> Flow Rate Diagnostics (25–30s Window)
@@ -203,7 +209,7 @@
             </p>
 
             <div class="space-y-2 text-xs">
-              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex flex-wrap sm:flex-nowrap items-start justify-between gap-2 sm:gap-3">
                 <div>
                   <div class="font-semibold text-white">Under 20s (Gushing / Fast Flow)</div>
                   <div class="text-slate-400 text-[11px] mt-0.5">Flow resistance too low. Sour, salty, thin, underdeveloped flavors.</div>
@@ -211,7 +217,7 @@
                 <span class="text-amber-400 font-mono font-bold">→ Grind Finer</span>
               </div>
 
-              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex flex-wrap sm:flex-nowrap items-start justify-between gap-2 sm:gap-3">
                 <div>
                   <div class="font-semibold text-white">Over 35s (Choked / Dripping Flow)</div>
                   <div class="text-slate-400 text-[11px] mt-0.5">Flow resistance excessive. Bitter, astringent, dry sandpaper tongue feel.</div>
@@ -219,7 +225,7 @@
                 <span class="text-amber-400 font-mono font-bold">→ Grind Coarser</span>
               </div>
 
-              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex flex-wrap sm:flex-nowrap items-start justify-between gap-2 sm:gap-3">
                 <div>
                   <div class="font-semibold text-white">Fast Time + Bitter & Dry Astringency</div>
                   <div class="text-slate-400 text-[11px] mt-0.5">Severe channelling! High pressure carving cracks through un-WDT'd puck.</div>
@@ -312,7 +318,7 @@
         </div>
 
         <!-- Recipe Deep-Dive Display Card -->
-        <div class="lg:col-span-8 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+        <div class="lg:col-span-8 p-4 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
           <div>
             <!-- Header & Key Metrics -->
             <div class="flex flex-wrap items-center justify-between pb-4 mb-4 border-b border-slate-800 gap-2">
@@ -324,8 +330,8 @@
             </div>
 
             <!-- Visual Relative Grind Shift Gauge -->
-            <div class="mb-6 p-4 rounded-xl bg-slate-950 border border-slate-800">
-              <div class="flex justify-between items-center text-xs">
+            <div class="mb-6 p-3 sm:p-4 rounded-xl bg-slate-950 border border-slate-800">
+              <div class="flex flex-wrap justify-between items-center gap-1.5 text-xs">
                 <span class="text-slate-300 font-semibold">Grind Size Relative to Dialed Standard Espresso:</span>
                 <span id="rec-grind-shift-text" class="font-mono font-bold text-amber-400">±0 Baseline (Dialed)</span>
               </div>
@@ -336,11 +342,11 @@
                 <div id="gauge-pin" class="gauge-pin" style="left: 20%;"></div>
               </div>
 
-              <div class="flex justify-between text-[10px] text-slate-500 font-mono">
-                <span>-2 Finer (Ristretto)</span>
-                <span class="text-slate-300">Baseline (Normale)</span>
-                <span>+4 Coarser (Turbo/Allongé)</span>
-                <span>+10 Coarser (Sprover)</span>
+              <div class="flex justify-between text-[9px] sm:text-[10px] text-slate-500 font-mono">
+                <span>-2 Finer<span class="hidden sm:inline"> (Ristretto)</span></span>
+                <span class="text-slate-300">Baseline<span class="hidden sm:inline"> (Normale)</span></span>
+                <span>+4 Coarser<span class="hidden sm:inline"> (Turbo)</span></span>
+                <span>+10 Coarser<span class="hidden sm:inline"> (Sprover)</span></span>
               </div>
             </div>
 
@@ -383,9 +389,9 @@
 
     <!-- SECTION 3: SHOT TIMER & STOPWATCH -->
     <section class="grid lg:grid-cols-12 gap-8 mb-12">
-      <div class="lg:col-span-6 ts-card coffee-card p-6 flex flex-col justify-between">
+      <div class="lg:col-span-6 ts-card coffee-card p-4 sm:p-6 flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between mb-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
             <h3 class="text-xl font-bold text-white flex items-center gap-2">
               <span>⏱️</span> Shot Extraction Timer
             </h3>
@@ -408,9 +414,9 @@
       </div>
 
       <!-- Dial-In Tasting Log -->
-      <div class="lg:col-span-6 ts-card coffee-card p-6 flex flex-col justify-between">
+      <div class="lg:col-span-6 ts-card coffee-card p-4 sm:p-6 flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between mb-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
             <h3 class="text-xl font-bold text-white flex items-center gap-2">
               <span>📓</span> Espresso Dial-In Log
             </h3>
@@ -419,11 +425,11 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-2 mb-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
             <input type="text" id="log-bean" placeholder="Coffee Bean / Origin" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
             <input type="text" id="log-grind" placeholder="Grinder setting (e.g. 14.5 / 2.1)" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
           </div>
-          <div class="grid grid-cols-3 gap-2 mb-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
             <input type="text" id="log-inout" placeholder="18g in / 36g out" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
             <input type="text" id="log-time" placeholder="Time (e.g. 27s)" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
             <select id="log-result" class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-white text-xs outline-none focus:border-amber-400">
@@ -442,8 +448,8 @@
 
     <!-- Technical Accordions -->
     <section class="space-y-4">
-      <details class="ts-card p-5 cursor-pointer">
-        <summary class="font-bold text-lg flex justify-between items-center text-amber-400">
+      <details class="ts-card p-4 sm:p-5 cursor-pointer">
+        <summary class="font-bold text-base sm:text-lg flex justify-between items-center text-amber-400 gap-2">
           <span>The Turbo Shot: Why Coarser & Faster Extracts More</span>
           <span class="arrow-down transition-transform duration-300 text-xs text-slate-400">▼</span>
         </summary>
@@ -454,8 +460,8 @@
         </div>
       </details>
 
-      <details class="ts-card p-5 cursor-pointer">
-        <summary class="font-bold text-lg flex justify-between items-center text-amber-400">
+      <details class="ts-card p-4 sm:p-5 cursor-pointer">
+        <summary class="font-bold text-base sm:text-lg flex justify-between items-center text-amber-400 gap-2">
           <span>Allongé & Sprover: Extending the Espresso Machine into Filter Territory</span>
           <span class="arrow-down transition-transform duration-300 text-xs text-slate-400">▼</span>
         </summary>
@@ -474,8 +480,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="/assets/js/nav.js"></script>
-  <script src="/assets/js/cmdk.js"></script>
+  <script src="/assets/js/nav.js?v=2"></script>
+  <script src="/assets/js/cmdk.js?v=2"></script>
 
   <script>
     document.getElementById('ts-year').textContent = new Date().getFullYear();

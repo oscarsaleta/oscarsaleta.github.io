@@ -7,6 +7,12 @@
   width: 100%;
 }
 
+@media (max-width: 640px) {
+  .catalan-container {
+    padding: 1.25rem 0.75rem 4rem;
+  }
+}
+
 .tense-btn {
   transition: all var(--transition-fast);
   cursor: pointer;

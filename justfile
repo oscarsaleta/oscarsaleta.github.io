@@ -5,9 +5,9 @@
 default:
     @just --list
 
-[doc("Run the website locally on http://localhost:8000 (or custom port)")]
+[doc("Run the website locally on http://localhost:8000 (with no-cache headers for dev)")]
 run-local port="8000":
-    python3 -m http.server {{port}}
+    python3 -c $'import http.server, socketserver\nclass H(http.server.SimpleHTTPRequestHandler):\n    def end_headers(self):\n        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")\n        self.send_header("Pragma", "no-cache")\n        self.send_header("Expires", "0")\n        super().end_headers()\nsocketserver.TCPServer.allow_reuse_address = True\nwith socketserver.TCPServer(("", int("{{port}}")), H) as httpd:\n    print("Serving HTTP on 0.0.0.0 port {{port}} (http://localhost:{{port}}/) with cache disabled...")\n    httpd.serve_forever()'
 
 [doc("Validate HTML syntax, JSON notes index, and audit HTML entities")]
 check:

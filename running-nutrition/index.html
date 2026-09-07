@@ -6,7 +6,7 @@
   <title>Endurance Nutrition & Ultra Fueling | threepscoot</title>
   
   <!-- Shared Design System -->
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
@@ -20,6 +20,16 @@
       margin: 0 auto;
       padding: 2rem 1.25rem 5rem;
       width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .running-container {
+        padding: 1.25rem 0.75rem 4rem;
+      }
+      .subnav-sticky {
+        margin: -1.25rem -0.75rem 2rem;
+        padding: 0.6rem 0.75rem;
+      }
     }
 
     .subnav-sticky {
@@ -111,7 +121,7 @@
     </header>
 
     <!-- Interactive Race Fueling & Hydration Calculator -->
-    <section id="planner" class="ts-card running-card mb-12 p-6 md:p-8">
+    <section id="planner" class="ts-card running-card mb-12 p-4 sm:p-6 md:p-8">
       <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
           <span class="ts-badge ts-badge-running mb-2">Interactive Tool</span>
@@ -400,7 +410,7 @@
     </div>
 
     <!-- Dynamic Meal Plan -->
-    <section id="meals" class="ts-card running-card p-6 md:p-8 scroll-mt-28">
+    <section id="meals" class="ts-card running-card p-4 sm:p-6 md:p-8 scroll-mt-28">
       <h2 class="text-2xl font-bold text-white mb-2">Dynamic Vegetarian Meal Planner</h2>
       <p class="text-sm text-slate-400 mb-6">Select your training volume and day structure to generate tailored meal examples.</p>
 
@@ -432,8 +442,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="/assets/js/nav.js"></script>
-  <script src="/assets/js/cmdk.js"></script>
+  <script src="/assets/js/nav.js?v=2"></script>
+  <script src="/assets/js/cmdk.js?v=2"></script>
 
   <script>
     document.getElementById('ts-year').textContent = new Date().getFullYear();
@@ -575,7 +585,7 @@
           <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
             <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">${meal}</h4>
             <ul class="text-xs text-slate-300 space-y-2">
-              ${plan[meal].map(i => `<li>&bull; ${i}</li>`).join('')}
+              ${plan[meal].map(i => `<li>• ${i}</li>`).join('')}
             </ul>
           </div>
         `;
