@@ -90,6 +90,9 @@
     
     <!-- Hero Header -->
     <header class="text-center mb-12">
+      <a href="/coffee/" class="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 font-medium mb-4 transition-colors">
+        ← Switch to Coffee Hub (Pour-Over vs. Espresso)
+      </a>
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-3" style="background: var(--accent-coffee-surface); color: var(--accent-coffee); border: 1px solid rgba(245, 158, 11, 0.25);">
         <span>☕</span> Extraction Science & Sensory Calibration
       </div>
@@ -127,7 +130,7 @@
 
         <div class="ts-card coffee-card p-5">
           <div class="text-2xl mb-2">👅</div>
-          <h3 class="font-bold text-white text-base mb-1">3. Astringency &ne; Bitter</h3>
+          <h3 class="font-bold text-white text-base mb-1">3. Astringency ≠ Bitter</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
             Bitterness is a flavor (ashy/dark). <strong>Astringency is a tactile sensation</strong> (chalky, tongue-drying sandpaper) caused by channeling from grinding too fine or over-swirling.
           </p>
@@ -482,8 +485,8 @@
         severity: 'Primary Lever: Grind Coarser or Drop Temp',
         title: 'Over-Extracted Cup (Bitter / Ashy / Heavy)',
         desc: 'Heavy, slow-dissolving bitter compounds and chlorogenic acid byproducts have dominated the cup, overwhelming fruity and sweet notes.',
-        action: 'Grind 1 click coarser, or drop brew temperature by 2°C–3°C (e.g. 94°C -> 91°C).',
-        secondary: 'Consider tightening your ratio slightly (e.g. 1:16 -> 1:15) to reduce total solvent contact.',
+        action: 'Grind 1 click coarser, or drop brew temperature by 2°C–3°C (e.g. 94°C → 91°C).',
+        secondary: 'Consider tightening your ratio slightly (e.g. 1:16 → 1:15) to reduce total solvent contact.',
         rationale: 'Lower temperature or coarser grind stops the extraction before astringent, bitter polyphenols dissolve.'
       },
       weak: {
@@ -725,7 +728,7 @@
         el.innerHTML = `
           <div>
             <div class="font-bold text-white">${item.bean || 'Specialty Coffee'} &bull; <span class="text-amber-400 font-mono">${item.grind || 'Setting'}</span></div>
-            <div class="text-slate-400 mt-0.5">Taste: <span class="text-slate-200 font-semibold">${item.taste}</span> &rarr; <span class="text-emerald-400 font-mono">${item.action}</span></div>
+            <div class="text-slate-400 mt-0.5">Taste: <span class="text-slate-200 font-semibold">${item.taste}</span> → <span class="text-emerald-400 font-mono">${item.action}</span></div>
             <div class="text-[10px] text-slate-500 mt-0.5">${item.date}</div>
           </div>
           <button class="text-slate-500 hover:text-red-400 p-1.5" onclick="deleteLog(${actualIdx})">&times;</button>

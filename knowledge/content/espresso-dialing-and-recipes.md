@@ -23,14 +23,14 @@ To successfully dial in without chasing your tail, follow Lance Hedrick's variab
    - Match your dose to your basket's volumetric capacity (e.g. **18.0g** for a standard 58mm double basket).
    - *Rule:* Never adjust dose up or down while dialing in. Keep it locked.
 2. **Yield Out (Fixed Constant)**:
-   - Choose a target ratio multiplier. For standard espresso, use **1:2** (18.0g in &rarr; 36.0g out).
+   - Choose a target ratio multiplier. For standard espresso, use **1:2** (18.0g in → 36.0g out).
    - *Rule:* Always manually stop your machine's pump when the scale reads your target yield.
 3. **Target Time Window (Diagnostic Output)**:
    - Aim for **25 to 30 seconds** as your baseline reference window.
    - *Rule:* Time is your flow resistance speedometer.
 4. **Grind Size (The Only Dial-In Lever)**:
-   - **Running under 20s (Fast/Gushing):** Flow resistance is too low. The shot tastes sour, salty, thin, and watery. **&rarr; Grind finer.**
-   - **Running over 35s (Choked/Dripping):** Flow resistance is too high. The shot tastes bitter, ashy, and leaves a dry finish. **&rarr; Grind coarser.**
+   - **Running under 20s (Fast/Gushing):** Flow resistance is too low. The shot tastes sour, salty, thin, and watery. **→ Grind finer.**
+   - **Running over 35s (Choked/Dripping):** Flow resistance is too high. The shot tastes bitter, ashy, and leaves a dry finish. **→ Grind coarser.**
 
 ---
 
@@ -54,12 +54,12 @@ Espresso is not limited to the traditional 1:2 shot. By adjusting ratio, pressur
 
 | Shot Style | Ratio Range | 18g Dose Yield | Target Time | Relative Grind Shift | Pressure Profile | Flavor Profile Focus |
 |---|---|---|---|---|---|---|
-| **Ristretto** | 1:1 – 1:1.5 | 18g &rarr; 18g–27g | 20–25s | **-1.5 Clicks Finer** | 9 bar | Intense syrupy punch, low extraction, high sweetness |
-| **Normale** | 1:2 – 1:2.5 | 18g &rarr; 36g–45g | 25–30s | **&plusmn;0 Baseline** | 9 bar (or 6–9 bar) | Classical balance of acidity, sweetness, and crema |
-| **Lungo** | 1:3 – 1:3.5 | 18g &rarr; 54g–60g | 30–35s | **+1.5 Clicks Coarser** | 9 bar | Higher extraction, lighter body, slight roast notes |
-| **Turbo Shot** | 1:2.5 – 1:3 | 16g &rarr; 42g–48g | **12–16s** | **+4 Clicks Coarser** | **6 bar (Fast flow)** | Maximum sweetness & clarity, zero astringency |
-| **Allongé** | 1:4 – 1:5 | 18g &rarr; 72g–90g | 25–35s | **+5.5 Clicks Coarser** | 6–9 bar | Sparkling acidity, terroir clarity in light roasts |
-| **Sprover** | 1:10 – 1:12 | 16g &rarr; 160g–192g | 45–60s | **+10 Clicks (Fine Filter)** | **1–2 bar / Low flow** | Filter coffee drinkability with micro-crema sweetness |
+| **Ristretto** | 1:1 – 1:1.5 | 18g → 18g–27g | 20–25s | **-1.5 Clicks Finer** | 9 bar | Intense syrupy punch, low extraction, high sweetness |
+| **Normale** | 1:2 – 1:2.5 | 18g → 36g–45g | 25–30s | **±0 Baseline** | 9 bar (or 6–9 bar) | Classical balance of acidity, sweetness, and crema |
+| **Lungo** | 1:3 – 1:3.5 | 18g → 54g–60g | 30–35s | **+1.5 Clicks Coarser** | 9 bar | Higher extraction, lighter body, slight roast notes |
+| **Turbo Shot** | 1:2.5 – 1:3 | 16g → 42g–48g | **12–16s** | **+4 Clicks Coarser** | **6 bar (Fast flow)** | Maximum sweetness & clarity, zero astringency |
+| **Allongé** | 1:4 – 1:5 | 18g → 72g–90g | 25–35s | **+5.5 Clicks Coarser** | 6–9 bar | Sparkling acidity, terroir clarity in light roasts |
+| **Sprover** | 1:10 – 1:12 | 16g → 160g–192g | 45–60s | **+10 Clicks (Fine Filter)** | **1–2 bar / Low flow** | Filter coffee drinkability with micro-crema sweetness |
 
 ---
 

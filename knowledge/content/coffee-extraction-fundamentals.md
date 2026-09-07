@@ -12,7 +12,7 @@ A rigorous breakdown of extraction physics, Total Dissolved Solids (TDS), Extrac
 2. **Lock Your Foundation (One Variable at a Time)**:
    - Fix your Dose (15g or 20g), Ratio (1:16 baseline), Water Chemistry, and Pour Structure.
    - **Adjust Grind Size first**. Only touch secondary variables (water temperature, agitation, ratio) once grind size is dialed or if astringency prevents grinding finer.
-3. **Astringency &ne; Bitterness**:
+3. **Astringency ≠ Bitterness**:
    - Bitterness is a *taste sensation* (medicinal, ashy, roasted compounds).
    - Astringency is a *tactile defect* (mouth-drying sandpaper, chalky coating on cheeks and tongue) caused by polyphenols extracted through micro-channels when fines choke filter paper pores.
 4. **Evaluate as the Cup Cools (50°C – 60°C)**:
@@ -58,12 +58,12 @@ Sensory Evaluation
   │
   ├─► Bitter, ashy, heavy back-of-throat burn?
   │     └─ Over-extracted solubles!
-  │          Action: Grind 1 click coarser, or lower water temp (e.g. 94°C -> 91°C).
-  │          Secondary: Tighten ratio slightly (1:16 -> 1:15).
+  │          Action: Grind 1 click coarser, or lower water temp (e.g. 94°C → 91°C).
+  │          Secondary: Tighten ratio slightly (1:16 → 1:15).
   │
   ├─► Weak, thin, diluted body?
   │     └─ Low TDS / under-strength!
-  │          Action: Tighten brew ratio (1:16 -> 1:15.5) or increase dose slightly.
+  │          Action: Tighten brew ratio (1:16 → 1:15.5) or increase dose slightly.
   │
   └─► Sweet, vibrant acidity, juicy, long clean aftertaste?
         └─ Dialed In! 🌟 Lock down recipe parameters in your journal.

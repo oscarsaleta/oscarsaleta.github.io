@@ -115,7 +115,7 @@
       </p>
       <div class="mt-4">
         <a href="/coffee/" class="text-xs text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1">
-          &larr; Switch to Coffee Hub (Pour-Over vs. Espresso)
+          ← Switch to Coffee Hub (Pour-Over vs. Espresso)
         </a>
       </div>
     </header>
@@ -160,55 +160,72 @@
       </div>
 
       <!-- Puck Prep & Flow Diagnostics -->
-      <div class="grid lg:grid-cols-2 gap-6">
+      <div class="grid lg:grid-cols-12 gap-6">
         <!-- Puck Prep -->
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
-          <h3 class="font-bold text-white text-sm flex items-center gap-2">
-            <span>🛠️</span> Puck Preparation: Eliminating Channelling
+        <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
+          <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+            <span>🛡️</span> Puck Prep Checklist (Channel Prevention)
           </h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            At 9 bars of pressure, water exploits any microscopic density unevenness in the coffee puck.
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+            At 9 bar pressure (~130 PSI), water aggressively finds the path of least resistance. Micro-channelling ruins dial-in by creating simultaneous sourness and harsh astringency.
           </p>
-          <ul class="text-xs text-slate-400 space-y-2">
-            <li class="flex items-start gap-2">
-              <span class="text-amber-400 font-bold">&bull;</span>
-              <span><strong>WDT (Weiss Distribution Technique):</strong> Use 0.3mm–0.4mm needles deep in the basket to break clumps and homogenize particle distribution from top to bottom.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-400 font-bold">&bull;</span>
-              <span><strong>Level Tamping:</strong> Tamp completely level and flat until the puck reaches mechanical resistance. <em>You cannot over-tamp coffee</em>; incomplete or slanted tamps cause severe edge channeling.</span>
-            </li>
-          </ul>
+
+          <div class="space-y-3 text-xs">
+            <div class="flex items-start gap-3 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+              <span class="text-amber-400 font-bold">•</span>
+              <div>
+                <span class="font-semibold text-white">Dosing Funnel:</span> Prevents grounds overflow and ensures clean basket edges before distribution.
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+              <span class="text-amber-400 font-bold">•</span>
+              <div>
+                <span class="font-semibold text-white">Deep WDT (0.35mm needles):</span> Stir down to the basket bottom in concentric circles to break electrostatic clumps.
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+              <span class="text-amber-400 font-bold">•</span>
+              <div>
+                <span class="font-semibold text-white">Gentle Tap & Flat Level Tamp:</span> One vertical tap on the mat to settle the bed, followed by a flat, level tamp. (You cannot "over-tamp").
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Flow Diagnostics -->
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
-          <h3 class="font-bold text-white text-sm flex items-center gap-2">
-            <span>🔬</span> Shot Flow Diagnostics
-          </h3>
-          <div class="space-y-2 text-xs">
-            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
-              <div>
-                <span class="font-bold text-white">Flow Fast (&lt; 20s):</span>
-                <span class="text-slate-400 ml-1">Thin crema, sour, sharp, watery</span>
-              </div>
-              <span class="text-amber-400 font-mono font-bold">&rarr; Grind Finer</span>
-            </div>
+        <div class="lg:col-span-6 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+              <span>⏱️</span> Flow Rate Diagnostics (25–30s Window)
+            </h3>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+              Extraction time is an <strong>indicator of flow resistance</strong>. Use 25–30s as a baseline guideline, not an inflexible dogma:
+            </p>
 
-            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
-              <div>
-                <span class="font-bold text-white">Flow Slow (&gt; 35s):</span>
-                <span class="text-slate-400 ml-1">Choking, dripping, harsh, bitter burn</span>
+            <div class="space-y-2 text-xs">
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-semibold text-white">Under 20s (Gushing / Fast Flow)</div>
+                  <div class="text-slate-400 text-[11px] mt-0.5">Flow resistance too low. Sour, salty, thin, underdeveloped flavors.</div>
+                </div>
+                <span class="text-amber-400 font-mono font-bold">→ Grind Finer</span>
               </div>
-              <span class="text-amber-400 font-mono font-bold">&rarr; Grind Coarser</span>
-            </div>
 
-            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
-              <div>
-                <span class="font-bold text-white">Fast + Spraying:</span>
-                <span class="text-slate-400 ml-1">Blonde streaks, simultaneously sour & bitter</span>
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-semibold text-white">Over 35s (Choked / Dripping Flow)</div>
+                  <div class="text-slate-400 text-[11px] mt-0.5">Flow resistance excessive. Bitter, astringent, dry sandpaper tongue feel.</div>
+                </div>
+                <span class="text-amber-400 font-mono font-bold">→ Grind Coarser</span>
               </div>
-              <span class="text-sky-400 font-mono font-bold">&rarr; Fix WDT Prep</span>
+
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
+                <div>
+                  <div class="font-semibold text-white">Fast Time + Bitter & Dry Astringency</div>
+                  <div class="text-slate-400 text-[11px] mt-0.5">Severe channelling! High pressure carving cracks through un-WDT'd puck.</div>
+                </div>
+                <span class="text-sky-400 font-mono font-bold">→ Fix WDT Prep</span>
+              </div>
             </div>
           </div>
         </div>
@@ -216,65 +233,81 @@
     </section>
 
     <!-- SECTION 2: INTERACTIVE ESPRESSO RECIPE EXPLORER -->
-    <section class="ts-card coffee-card mb-12 p-6 md:p-8">
-      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <div>
-          <span class="ts-badge ts-badge-coffee mb-2">Step 2: Recipes & Ratios</span>
-          <h2 class="text-2xl md:text-3xl font-bold text-white">Interactive Espresso Recipe Explorer</h2>
-          <p class="text-xs text-slate-400 mt-1">
-            Explore traditional to modern shot styles (based on Lance Hedrick's video on Allongé, Sprover, and Turbo Shots).
-          </p>
-        </div>
+    <section class="mb-14">
+      <div class="flex items-center gap-3 mb-2">
+        <h2 class="text-2xl font-bold text-white">2. Modern Espresso Recipes & Relative Grind Shift</h2>
+        <span class="h-0.5 flex-1 bg-gradient-to-r from-amber-500/40 to-transparent"></span>
       </div>
+      <p class="text-sm text-slate-400 mb-6">
+        Based on Lance Hedrick's recipe deep-dive. Each style changes ratio, target contact time, and specifically <strong>grind size relative to your dialed-in standard espresso baseline</strong>.
+      </p>
 
       <!-- Dose Controls -->
-      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 mb-8 flex flex-wrap items-center justify-between gap-4">
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 mb-6 flex flex-wrap items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-          <label class="text-xs font-semibold text-slate-300">Dose In (g):</label>
-          <button class="dose-toggle active px-3 py-1 text-xs font-bold rounded-lg bg-amber-500 text-slate-950 border border-amber-500" data-dose="18">18g (Standard)</button>
-          <button class="dose-toggle px-3 py-1 text-xs font-bold rounded-lg bg-slate-900 text-slate-300 border border-slate-700 hover:border-amber-400" data-dose="15">15g (Single/Turbo)</button>
-          <button class="dose-toggle px-3 py-1 text-xs font-bold rounded-lg bg-slate-900 text-slate-300 border border-slate-700 hover:border-amber-400" data-dose="20">20g (Triple)</button>
+          <span class="text-xs text-slate-400 font-medium">Baseline Basket Dose:</span>
+          <div class="flex items-center gap-1.5">
+            <button class="dose-btn px-3 py-1 text-xs rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white" data-dose="15">15g</button>
+            <button class="dose-btn px-3 py-1 text-xs rounded-lg border border-amber-500/40 bg-amber-500/10 text-amber-300 font-bold" data-dose="18">18g (Default)</button>
+            <button class="dose-btn px-3 py-1 text-xs rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white" data-dose="20">20g</button>
+          </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="text-xs text-slate-400">Custom Slider:</span>
-          <input type="range" id="dose-slider" min="14" max="22" step="0.5" value="18" class="calc-slider w-32">
-          <span id="dose-display" class="font-mono text-sm font-bold text-amber-400">18.0g</span>
+        <div class="flex items-center gap-3 flex-1 max-w-xs">
+          <input type="range" id="dose-slider" min="14" max="22" step="0.5" value="18" class="w-full accent-amber-500">
+          <span id="dose-display" class="text-xs font-mono font-bold text-amber-400 min-w-[40px]">18.0g</span>
         </div>
       </div>
 
       <!-- Recipe Selectors & Details Grid -->
-      <div class="grid lg:grid-cols-12 gap-8 items-start">
-        
+      <div class="grid lg:grid-cols-12 gap-6 items-start">
         <!-- Recipe Buttons List -->
         <div class="lg:col-span-4 space-y-2">
-          <button class="recipe-tab-btn w-full" data-recipe="ristretto">
-            <div class="font-bold text-sm text-white">Ristretto</div>
-            <div class="text-[11px] text-slate-400">1:1 – 1:1.5 &bull; Syrupy, thick, intense body</div>
+          <button class="recipe-tab-btn w-full text-left p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-850 transition-all" data-recipe="ristretto">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white text-sm">Ristretto</span>
+              <span class="text-xs font-mono text-amber-400">-1.5 Clicks</span>
+            </div>
+            <div class="text-[11px] text-slate-400">1:1 – 1:1.5 • Syrupy, thick, intense body</div>
           </button>
 
-          <button class="recipe-tab-btn w-full active" data-recipe="normale">
-            <div class="font-bold text-sm text-white">Normale (Standard)</div>
-            <div class="text-[11px] text-slate-400">1:2 – 1:2.5 &bull; Baseline reference shot</div>
+          <button class="recipe-tab-btn active w-full text-left p-3.5 rounded-xl border border-amber-500/50 bg-amber-500/10 transition-all" data-recipe="normale">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white text-sm">Normale (Standard)</span>
+              <span class="text-xs font-mono text-amber-400">±0 Baseline</span>
+            </div>
+            <div class="text-[11px] text-slate-400">1:2 – 1:2.5 • Baseline reference shot</div>
           </button>
 
-          <button class="recipe-tab-btn w-full" data-recipe="lungo">
-            <div class="font-bold text-sm text-white">Lungo</div>
-            <div class="text-[11px] text-slate-400">1:3 – 1:3.5 &bull; Traditional extended extraction</div>
+          <button class="recipe-tab-btn w-full text-left p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-850 transition-all" data-recipe="lungo">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white text-sm">Lungo</span>
+              <span class="text-xs font-mono text-amber-400">+1.5 Clicks</span>
+            </div>
+            <div class="text-[11px] text-slate-400">1:3 – 1:3.5 • Traditional extended extraction</div>
           </button>
 
-          <button class="recipe-tab-btn w-full" data-recipe="turbo">
-            <div class="font-bold text-sm text-white">Turbo Shot ⚡</div>
-            <div class="text-[11px] text-slate-400">1:2.5 – 1:3 &bull; 12–16s &bull; 6 bar fast flow</div>
+          <button class="recipe-tab-btn w-full text-left p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-850 transition-all" data-recipe="turbo">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white text-sm">Turbo Shot ⚡</span>
+              <span class="text-xs font-mono text-amber-400">+4 Clicks</span>
+            </div>
+            <div class="text-[11px] text-slate-400">1:2.5 – 1:3 • 12–16s • 6 bar fast flow</div>
           </button>
 
-          <button class="recipe-tab-btn w-full" data-recipe="allonge">
-            <div class="font-bold text-sm text-white">Allongé</div>
-            <div class="text-[11px] text-slate-400">1:4 – 1:5 &bull; High-extraction light roast favorite</div>
+          <button class="recipe-tab-btn w-full text-left p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-850 transition-all" data-recipe="allonge">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white text-sm">Allongé</span>
+              <span class="text-xs font-mono text-amber-400">+5.5 Clicks</span>
+            </div>
+            <div class="text-[11px] text-slate-400">1:4 – 1:5 • High-extraction light roast favorite</div>
           </button>
 
-          <button class="recipe-tab-btn w-full" data-recipe="sprover">
-            <div class="font-bold text-sm text-white">Sprover (Spro-over) ☕</div>
-            <div class="text-[11px] text-slate-400">1:10 – 1:12 &bull; Espresso-filter hybrid</div>
+          <button class="recipe-tab-btn w-full text-left p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-850 transition-all" data-recipe="sprover">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white text-sm">Sprover (Espresso-Filter)</span>
+              <span class="text-xs font-mono text-amber-400">+10 Clicks</span>
+            </div>
+            <div class="text-[11px] text-slate-400">1:10 – 1:12 • Espresso-filter hybrid</div>
           </button>
         </div>
 
@@ -285,7 +318,7 @@
             <div class="flex flex-wrap items-center justify-between pb-4 mb-4 border-b border-slate-800 gap-2">
               <div>
                 <h3 id="rec-title" class="text-2xl font-bold text-white">Normale (Standard Espresso)</h3>
-                <div id="rec-ratio-str" class="text-xs text-amber-400 font-mono mt-0.5">Ratio: 1:2 (18.0g in &rarr; 36.0g out)</div>
+                <div id="rec-ratio-str" class="text-xs text-amber-400 font-mono mt-0.5">Ratio: 1:2 (18.0g in → 36.0g out)</div>
               </div>
               <span id="rec-badge" class="ts-badge ts-badge-coffee font-mono text-xs">Standard Reference</span>
             </div>
@@ -294,7 +327,7 @@
             <div class="mb-6 p-4 rounded-xl bg-slate-950 border border-slate-800">
               <div class="flex justify-between items-center text-xs">
                 <span class="text-slate-300 font-semibold">Grind Size Relative to Dialed Standard Espresso:</span>
-                <span id="rec-grind-shift-text" class="font-mono font-bold text-amber-400">&plusmn;0 Baseline (Dialed)</span>
+                <span id="rec-grind-shift-text" class="font-mono font-bold text-amber-400">±0 Baseline (Dialed)</span>
               </div>
 
               <!-- Visual Track -->
@@ -546,7 +579,7 @@
       const yieldGrams = Math.round(currentDose * rec.ratioMultiplier);
 
       recTitle.textContent = rec.title;
-      recRatioStr.textContent = `Ratio: ${rec.ratioString} (${currentDose.toFixed(1)}g in &rarr; ${yieldGrams}g out)`;
+      recRatioStr.textContent = `Ratio: ${rec.ratioString} (${currentDose.toFixed(1)}g in → ${yieldGrams}g out)`;
       recBadge.textContent = rec.badge;
       recGrindShiftText.textContent = rec.grindShiftText;
       gaugePin.style.left = rec.gaugePercent;
