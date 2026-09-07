@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Hub: Pour-Over & Espresso | threepscoot</title>
+  
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .coffee-hub-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 5rem;
+      width: 100%;
+    }
+
+    .discipline-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      text-decoration: none;
+      min-height: 320px;
+      transition: all var(--transition-normal);
+    }
+
+    .discipline-card:hover {
+      transform: translateY(-4px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Header Navigation -->
+  <div id="ts-nav-root"></div>
+
+  <!-- Main Container -->
+  <main class="coffee-hub-container">
+    
+    <!-- Hero Header -->
+    <header class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-3" style="background: var(--accent-coffee-surface); color: var(--accent-coffee); border: 1px solid rgba(245, 158, 11, 0.25);">
+        <span>☕</span> Extraction Science & Brewing Mechanics
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        Specialty Coffee Hub
+      </h1>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        Choose your brewing discipline. Gravity percolation and forced-pressure espresso demand entirely distinct extraction physics, grinder calibrations, and sensory diagnostics.
+      </p>
+    </header>
+
+    <!-- Two Primary Disciplines Grid -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+      
+      <!-- Pour-Over Filter Lab -->
+      <a href="/pourover/" class="ts-card coffee-card discipline-card p-8">
+        <div>
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background: var(--accent-coffee-surface); color: var(--accent-coffee); border: 1px solid rgba(245, 158, 11, 0.2);">
+              ☕
+            </div>
+            <span class="ts-badge ts-badge-coffee font-mono text-xs">Gravity Percolation</span>
+          </div>
+
+          <h2 class="text-2xl font-bold text-white mb-3">Pour-Over Filter Lab</h2>
+          <p class="text-sm text-slate-300 leading-relaxed mb-6">
+            Dial in specialty filter brews using Lance Hedrick's Two-Pour technique, sensory diagnostic compass, and variable isolation protocol.
+          </p>
+
+          <ul class="text-xs text-slate-400 space-y-2 mb-6">
+            <li class="flex items-center gap-2">
+              <span class="text-amber-400 font-bold">&bull;</span>
+              <span><strong>Sensory Compass:</strong> Sour vs. Astringent vs. Bitter troubleshooting.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-amber-400 font-bold">&bull;</span>
+              <span><strong>Lance's 2-Pour Recipe:</strong> 3x Bloom + Single continuous pour.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-amber-400 font-bold">&bull;</span>
+              <span><strong>Phase Stopwatch:</strong> Bloom degassing and drawdown tracker.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-amber-400 font-bold">&bull;</span>
+              <span><strong>Dial-In Journal:</strong> Track bean adjustments across brews.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-between font-semibold text-sm text-amber-400">
+          <span>Enter Pour-Over Lab</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Espresso Extraction Lab -->
+      <a href="/espresso/" class="ts-card coffee-card discipline-card p-8">
+        <div>
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);">
+              ⚡
+            </div>
+            <span class="ts-badge ts-badge-coffee font-mono text-xs">6 – 9 Bar Pressure</span>
+          </div>
+
+          <h2 class="text-2xl font-bold text-white mb-3">Espresso Extraction Lab</h2>
+          <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+            Puck preparation mechanics (WDT & level tamping), dial-in basics, and modern espresso recipe exploration with relative grind calibration.
+          </p>
+
+          <ul class="space-y-2.5 text-xs text-slate-300 mb-8">
+            <li class="flex items-center gap-2">
+              <span class="text-amber-400 font-bold">•</span>
+              <span><strong>The 4 Constants:</strong> Fixed dose, fixed yield, flat tamp & grind-only lever.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-amber-400 font-bold">•</span>
+              <span><strong>Modern Shot Matrix:</strong> Ristretto, Normale, Lungo, Turbo Shot & Allongé.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-amber-400 font-bold">•</span>
+              <span><strong>Turbo Shot (Cameron Model):</strong> 6-bar high-flow, coarse-grind, zero astringency.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-amber-400 font-bold">•</span>
+              <span><strong>Relative Grind Shift Gauge:</strong> Grind offset relative to standard dialed-in espresso.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-between font-semibold text-sm text-amber-400">
+          <span>Enter Espresso Lab</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Comparative Physics Breakdown -->
+    <section class="ts-card p-6 md:p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <h3 class="text-xl font-bold text-white">Percolation vs. Pressurized Extraction</h3>
+        <span class="h-0.5 flex-1 bg-gradient-to-r from-amber-500/40 to-transparent"></span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-mono text-xs">
+              <th class="py-3 px-4">Extraction Parameter</th>
+              <th class="py-3 px-4 text-amber-400">Pour-Over (Filter)</th>
+              <th class="py-3 px-4 text-amber-400">Espresso</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 text-slate-300 text-xs">
+            <tr>
+              <td class="py-3 px-4 font-semibold text-white">Driving Force</td>
+              <td class="py-3 px-4">Atmospheric gravity + hydrostatic head</td>
+              <td class="py-3 px-4 font-mono text-amber-300">6 to 9 bars pump pressure</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-semibold text-white">Typical Grind Particle Size</td>
+              <td class="py-3 px-4">Medium-fine to medium (500–800 &mu;m)</td>
+              <td class="py-3 px-4 font-mono text-amber-300">Fine to extra-fine (150–350 &mu;m)</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-semibold text-white">Standard Brew Ratio</td>
+              <td class="py-3 px-4">1:15 to 1:17 (e.g. 15g → 240g)</td>
+              <td class="py-3 px-4 font-mono text-amber-300">1:1.5 to 1:3 (e.g. 18g → 36g)</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-semibold text-white">Extraction Contact Time</td>
+              <td class="py-3 px-4">2:00 to 4:00 minutes</td>
+              <td class="py-3 px-4 font-mono text-amber-300">12 to 35 seconds</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-semibold text-white">TDS (Total Dissolved Solids)</td>
+              <td class="py-3 px-4">1.2% – 1.5% (Clean, delicate clarity)</td>
+              <td class="py-3 px-4 font-mono text-amber-300">8% – 12% (Viscous, emulsified crema)</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-semibold text-white">Primary Channeling Cause</td>
+              <td class="py-3 px-4">Over-fining and excessive drawdown swirling</td>
+              <td class="py-3 px-4 font-mono text-amber-300">Puck clumps, uneven tamping, high resistance</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="ts-footer">
+    <p>&copy; <span id="ts-year"></span> threepscoot &bull; Built with modern zero-build web standards &bull; <a href="https://github.com/oscarsaleta/oscarsaleta.github.io" target="_blank">GitHub</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/cmdk.js"></script>
+  <script>
+    document.getElementById('ts-year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Base & Second Brain | threepscoot</title>
+  
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Markdown Renderer (Marked) & Syntax Highlighter (Highlight.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <style>
+    .kb-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+      width: 100%;
+    }
+
+    /* Filters Bar */
+    .kb-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .kb-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-highlight);
+      margin-bottom: 0.5rem;
+    }
+
+    .kb-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    .kb-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .kb-search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.55rem 0.85rem;
+      flex: 1;
+      max-width: 400px;
+      transition: all var(--transition-fast);
+    }
+
+    .kb-search-box:focus-within {
+      border-color: var(--accent-kb);
+      box-shadow: 0 0 0 2px var(--accent-kb-glow);
+    }
+
+    .kb-search-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      width: 100%;
+    }
+
+    .kb-category-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .kb-tab {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.825rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+
+    .kb-tab:hover, .kb-tab.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .kb-tab.active[data-cat="Running"] {
+      border-color: var(--accent-running);
+      color: var(--accent-running);
+      background: var(--accent-running-surface);
+    }
+    .kb-tab.active[data-cat="Coffee"] {
+      border-color: var(--accent-coffee);
+      color: var(--accent-coffee);
+      background: var(--accent-coffee-surface);
+    }
+    .kb-tab.active[data-cat="Catalan"] {
+      border-color: var(--accent-catalan);
+      color: var(--accent-catalan);
+      background: var(--accent-catalan-surface);
+    }
+    .kb-tab.active[data-cat="Tech"] {
+      border-color: var(--accent-kb);
+      color: var(--accent-kb);
+      background: var(--accent-kb-surface);
+    }
+
+    /* Note Cards Grid */
+    .kb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .kb-note-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .kb-note-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .kb-note-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-highlight);
+      line-height: 1.4;
+      margin-bottom: 0.65rem;
+      transition: color var(--transition-fast);
+    }
+
+    .kb-note-card:hover .kb-note-title {
+      color: #38bdf8;
+    }
+
+    .kb-note-summary {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    .kb-note-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+
+    .kb-tag-chip {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      padding: 0.2rem 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Note Reader View */
+    .kb-reader {
+      display: none;
+      animation: fadeIn 200ms ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .kb-reader-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .kb-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .kb-back-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .kb-markdown-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    .kb-markdown-content h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+      color: var(--text-highlight);
+    }
+
+    .kb-markdown-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #e2e8f0;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+
+    .kb-markdown-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #cbd5e1;
+    }
+
+    .kb-markdown-content p {
+      margin-bottom: 1.25rem;
+      color: #cbd5e1;
+    }
+
+    .kb-markdown-content ul, .kb-markdown-content ol {
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+      color: #cbd5e1;
+    }
+
+    .kb-markdown-content li {
+      margin-bottom: 0.35rem;
+    }
+
+    .kb-markdown-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .kb-markdown-content th, .kb-markdown-content td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .kb-markdown-content th {
+      background: rgba(30, 41, 59, 0.8);
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+    }
+
+    .kb-markdown-content pre {
+      background: #0d1117;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .kb-markdown-content code {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+
+    .kb-markdown-content :not(pre) > code {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      color: #38bdf8;
+    }
+
+    .kb-markdown-content blockquote {
+      border-left: 3px solid #38bdf8;
+      background: rgba(56, 189, 248, 0.05);
+      padding: 0.75rem 1.25rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1.5rem 0;
+      color: #94a3b8;
+    }
+
+    .kb-copy-btn {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      color: var(--text-muted);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .kb-copy-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Header & Navigation -->
+  <div id="ts-nav-root"></div>
+
+  <!-- Main Container -->
+  <main class="kb-container">
+    
+    <!-- Catalog View -->
+    <div id="kb-catalog-view">
+      <header class="kb-header">
+        <h1 class="kb-title">Knowledge Base & Second Brain</h1>
+        <p class="kb-subtitle">A digital garden of technical notes, endurance physiology models, specialty coffee extraction logs, and language mechanics.</p>
+        
+        <div class="kb-controls">
+          <div class="kb-search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted);">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="kb-search-input" class="kb-search-input" placeholder="Search notes by title, tag or summary..." autocomplete="off">
+          </div>
+
+          <div class="kb-category-tabs">
+            <button class="kb-tab active" data-cat="All">All Topics</button>
+            <button class="kb-tab" data-cat="Running">🏃 Running</button>
+            <button class="kb-tab" data-cat="Coffee">☕ Coffee</button>
+            <button class="kb-tab" data-cat="Catalan">📚 Catalan</button>
+            <button class="kb-tab" data-cat="Tech">💻 Tech</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Note Grid -->
+      <div id="kb-grid" class="kb-grid"></div>
+    </div>
+
+    <!-- Note Reader View -->
+    <div id="kb-reader-view" class="kb-reader">
+      <div class="kb-reader-nav">
+        <button id="kb-back-btn" class="kb-back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to all notes
+        </button>
+        <div id="kb-reader-meta"></div>
+      </div>
+
+      <article id="kb-markdown-content" class="kb-markdown-content">
+        <div style="padding: 3rem; text-align: center; color: var(--text-muted);">Loading note content...</div>
+      </article>
+    </div>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="ts-footer">
+    <p>&copy; <span id="ts-year"></span> threepscoot &bull; Built with modern zero-build web standards &bull; <a href="https://github.com/oscarsaleta/oscarsaleta.github.io" target="_blank">GitHub</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/cmdk.js"></script>
+  
+  <script>
+    document.getElementById('ts-year').textContent = new Date().getFullYear();
+
+    let allNotes = [];
+    let currentCategory = 'All';
+    let searchQuery = '';
+
+    // Fetch notes manifest
+    async function initKnowledgeBase() {
+      try {
+        const response = await fetch('/knowledge/notes.json');
+        if (!response.ok) throw new Error('Failed to load notes catalog');
+        allNotes = await response.json();
+      } catch (err) {
+        console.warn('Fallback loading notes catalog:', err);
+        // Fallback embedded notes if file access is local file:// protocol
+        allNotes = [
+          {
+            "id": "ultra-training-protocols",
+            "title": "Ultra Marathon Fueling & Gut Training Protocols",
+            "category": "Running",
+            "badgeClass": "ts-badge-running",
+            "tags": ["ultra", "nutrition", "carbs", "hydration", "gut-training"],
+            "summary": "Comprehensive endurance physiology, exogenous carbohydrate intake rates (up to 90g-120g/hr), sodium replacement, and GI conditioning for 50km to 100km ultramarathons.",
+            "readTime": "5 min read",
+            "date": "2026-09",
+            "file": "content/ultra-training-protocols.md"
+          },
+          {
+            "id": "coffee-extraction-fundamentals",
+            "title": "Coffee Extraction & Dial-in Fundamentals",
+            "category": "Coffee",
+            "badgeClass": "ts-badge-coffee",
+            "tags": ["coffee", "pourover", "tds", "extraction", "v60", "grind"],
+            "summary": "Technical breakdown of Total Dissolved Solids (TDS), Extraction Yield (EY), agitation dynamics, and brew parameter troubleshooting heuristics.",
+            "readTime": "4 min read",
+            "date": "2026-09",
+            "file": "content/coffee-extraction-fundamentals.md"
+          },
+          {
+            "id": "catalan-verb-patterns",
+            "title": "Catalan Verb Patterns & Mnemonic Anchors",
+            "category": "Catalan",
+            "badgeClass": "ts-badge-catalan",
+            "tags": ["catalan", "grammar", "verbs", "periphrastic-past", "language"],
+            "summary": "High-frequency irregular patterns, inchoative verb conjugation paradigms, and mastering the periphrastic past tense (vaig + infinitive).",
+            "readTime": "4 min read",
+            "date": "2026-09",
+            "file": "content/catalan-verb-patterns.md"
+          },
+          {
+            "id": "developer-cheatsheet",
+            "title": "Developer CLI & Git Cheatsheet",
+            "category": "Tech",
+            "badgeClass": "ts-badge-kb",
+            "tags": ["git", "terminal", "zsh", "macos", "cli", "tools"],
+            "summary": "Distilled personal quick-reference for surgical Git history, worktrees, undoing mistakes, local static testing servers, and macOS shell efficiency.",
+            "readTime": "3 min read",
+            "date": "2026-09",
+            "file": "content/developer-cheatsheet.md"
+          }
+        ];
+      }
+
+      renderCatalog();
+      handleRoute();
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById('kb-grid');
+      const filtered = allNotes.filter(note => {
+        const matchesCategory = currentCategory === 'All' || note.category === currentCategory;
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch = !q || 
+          note.title.toLowerCase().includes(q) ||
+          note.summary.toLowerCase().includes(q) ||
+          note.tags.some(t => t.toLowerCase().includes(q));
+        return matchesCategory && matchesSearch;
+      });
+
+      grid.innerHTML = '';
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 4rem 1rem; text-align: center; color: var(--text-muted);">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+            <p>No notes found matching your filter criteria.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(note => {
+        const card = document.createElement('div');
+        card.className = `ts-card kb-note-card ${getCardClass(note.category)}`;
+        card.innerHTML = `
+          <div class="kb-note-meta">
+            <span class="ts-badge ${note.badgeClass}">${note.category}</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">${note.readTime}</span>
+          </div>
+          <h2 class="kb-note-title">${note.title}</h2>
+          <p class="kb-note-summary">${note.summary}</p>
+          <div class="kb-note-tags">
+            ${note.tags.map(tag => `<span class="kb-tag-chip">#${tag}</span>`).join('')}
+          </div>
+        `;
+
+        card.addEventListener('click', () => {
+          window.location.hash = note.id;
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    function getCardClass(category) {
+      switch (category) {
+        case 'Running': return 'running-card';
+        case 'Coffee': return 'coffee-card';
+        case 'Catalan': return 'catalan-card';
+        default: return 'kb-card';
+      }
+    }
+
+    // Category Tabs
+    document.querySelectorAll('.kb-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.kb-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentCategory = tab.dataset.cat;
+        renderCatalog();
+      });
+    });
+
+    // Search Input
+    document.getElementById('kb-search-input').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderCatalog();
+    });
+
+    // Reader Mode & Hash Routing
+    async function handleRoute() {
+      const hash = window.location.hash.replace('#', '');
+      const catalogView = document.getElementById('kb-catalog-view');
+      const readerView = document.getElementById('kb-reader-view');
+
+      if (!hash) {
+        catalogView.style.display = 'block';
+        readerView.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      const note = allNotes.find(n => n.id === hash);
+      if (!note) {
+        catalogView.style.display = 'block';
+        readerView.style.display = 'none';
+        return;
+      }
+
+      catalogView.style.display = 'none';
+      readerView.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Update Reader Metadata
+      document.getElementById('kb-reader-meta').innerHTML = `
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="ts-badge ${note.badgeClass}">${note.category}</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">${note.readTime}</span>
+        </div>
+      `;
+
+      // Fetch and render markdown
+      const contentEl = document.getElementById('kb-markdown-content');
+      contentEl.innerHTML = `<div style="padding: 3rem; text-align: center; color: var(--text-muted);">Fetching ${note.file}...</div>`;
+
+      try {
+        const res = await fetch(`/knowledge/${note.file}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const mdText = await res.text();
+        
+        // Render with Marked
+        if (window.marked) {
+          contentEl.innerHTML = marked.parse(mdText);
+          // Highlight code blocks
+          if (window.hljs) {
+            contentEl.querySelectorAll('pre code').forEach(block => {
+              hljs.highlightElement(block);
+            });
+          }
+          // Add copy buttons to pre
+          contentEl.querySelectorAll('pre').forEach(pre => {
+            const btn = document.createElement('button');
+            btn.className = 'kb-copy-btn';
+            btn.textContent = 'Copy';
+            btn.addEventListener('click', () => {
+              const code = pre.querySelector('code')?.innerText || pre.innerText;
+              navigator.clipboard.writeText(code);
+              btn.textContent = 'Copied!';
+              setTimeout(() => btn.textContent = 'Copy', 2000);
+            });
+            pre.appendChild(btn);
+          });
+        } else {
+          contentEl.innerHTML = `<pre>${mdText}</pre>`;
+        }
+      } catch (err) {
+        contentEl.innerHTML = `
+          <div style="padding: 2rem; color: #f87171;">
+            <h3>Error loading note</h3>
+            <p>Could not load the markdown file (${note.file}). Please verify the file path.</p>
+          </div>
+        `;
+      }
+    }
+
+    document.getElementById('kb-back-btn').addEventListener('click', () => {
+      window.location.hash = '';
+    });
+
+    window.addEventListener('hashchange', handleRoute);
+
+    // Initialize
+    initKnowledgeBase();
+  </script>
+</body>
+</html>

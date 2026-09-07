@@ -1,310 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nutrition & Diet for Peak Performance</title>
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Use the Inter font family */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Smooth scrolling for anchor links */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Simple animation for section headers */
-        h2 {
-            transition: color 0.3s ease-in-out;
-        }
-        h2:hover {
-            color: #10B981; /* Emerald-500 */
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Endurance Nutrition & Ultra Fueling | threepscoot</title>
+  
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-10">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <h1 class="text-2xl font-bold text-gray-900">Nutrition for Athletes</h1>
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#principles" class="text-gray-600 hover:text-emerald-600 font-medium">Principles</a>
-                    <a href="#macros" class="text-gray-600 hover:text-emerald-600 font-medium">Macros</a>
-                    <a href="#micros" class="text-gray-600 hover:text-emerald-600 font-medium">Micros</a>
-                    <a href="#hydration" class="text-gray-600 hover:text-emerald-600 font-medium">Hydration</a>
-                    <a href="#ultra" class="text-gray-600 hover:text-emerald-600 font-medium">Ultra Training</a>
-                    <a href="#meal-examples" class="text-gray-600 hover:text-emerald-600 font-medium">Meal Plans</a>
-                </nav>
-                <!-- Mobile Menu Button (optional, for future enhancement) -->
-            </div>
-        </div>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .running-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 5rem;
+      width: 100%;
+    }
+
+    .subnav-sticky {
+      position: sticky;
+      top: 57px;
+      z-index: 40;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      margin: -2rem -1.25rem 2.5rem;
+      padding: 0.75rem 1.25rem;
+    }
+
+    .subnav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      font-size: 0.85rem;
+    }
+
+    .subnav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
+
+    .subnav-link:hover {
+      color: var(--accent-running);
+    }
+
+    .calc-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #1e293b;
+      outline: none;
+    }
+
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #10b981;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Header Navigation -->
+  <div id="ts-nav-root"></div>
+
+  <!-- Subnav Anchor Bar -->
+  <div class="subnav-sticky">
+    <div class="subnav-inner">
+      <a href="#planner" class="subnav-link">⚡ Race Calculator</a>
+      <a href="#principles" class="subnav-link">Core Principles</a>
+      <a href="#macros" class="subnav-link">Vegetarian Macros</a>
+      <a href="#micros" class="subnav-link">Micros & Electrolytes</a>
+      <a href="#hydration" class="subnav-link">Hydration Strategy</a>
+      <a href="#ultra" class="subnav-link">100km Ultra Protocols</a>
+      <a href="#meals" class="subnav-link">Dynamic Meal Planner</a>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="running-container">
+    
+    <!-- Hero Header -->
+    <header class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-3" style="background: var(--accent-running-surface); color: var(--accent-running); border: 1px solid rgba(16, 185, 129, 0.25);">
+        <span>🏃</span> Endurance Athletics & Physiology
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+        Nutrition & Diet for Peak Performance
+      </h1>
+      <p class="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        A practical, science-based fueling blueprint for vegetarian endurance athletes preparing for grueling distances up to 100km.
+      </p>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
-        
-        <!-- Introduction Section -->
-        <section class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Nutrition & Diet for Peak Performance</h1>
-            <p class="max-w-3xl mx-auto text-lg text-gray-600">
-                A practical guide for vegetarian athletes. Fueling your body correctly is just as important as your physical training, especially when preparing for endurance events like a 100km ultramarathon.
-            </p>
-        </section>
-
-        <!-- Core Principles Section -->
-        <section id="principles" class="mb-12 scroll-mt-20">
-            <h2 class="text-3xl font-bold mb-6 border-b-2 border-emerald-500 pb-2">Core Principles</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2 text-emerald-700">Energy Balance</h3>
-                    <p>Consume enough calories to match your high energy expenditure from running and bouldering. Being in a deficit can impair recovery and performance. On heavy training days, your energy needs will be significantly higher.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2 text-emerald-700">Macronutrient Timing</h3>
-                    <p>Focus on carbohydrates before and during workouts for energy, and a combination of protein and carbs after workouts for recovery and muscle repair. This is crucial for adapting to your training load.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2 text-emerald-700">Nutrient Density</h3>
-                    <p>Choose whole, unprocessed foods. As a vegetarian, this means a wide variety of vegetables, fruits, legumes, nuts, and seeds to ensure you get a full spectrum of vitamins and minerals.</p>
-                </div>
-                 <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2 text-emerald-700">Consistency is Key</h3>
-                    <p>Good nutrition isn't about a single meal. It's about consistent, daily habits that support your training, recovery, and overall health. Use this guide as a foundation to build those habits.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Macronutrients Section -->
-        <section id="macros" class="mb-12 scroll-mt-20">
-            <h2 class="text-3xl font-bold mb-6 border-b-2 border-emerald-500 pb-2">Vegetarian Macronutrients</h2>
-            <div class="space-y-8">
-                <!-- Protein -->
-                <article class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-2xl font-semibold mb-3">Protein: The Builder</h3>
-                    <p class="mb-4">Essential for muscle repair and building, especially after long runs or climbing sessions. Aim for 1.4-1.8 grams of protein per kilogram of body weight daily.</p>
-                    <h4 class="font-semibold mb-2">Excellent Sources:</h4>
-                    <ul class="list-disc list-inside grid sm:grid-cols-2 gap-x-4">
-                        <li>Lentils & Chickpeas</li>
-                        <li>Tofu & Tempeh</li>
-                        <li>Edamame & Seitan</li>
-                        <li>Quinoa & Buckwheat</li>
-                        <li>Nuts & Seeds (Hemp, Chia)</li>
-                        <li>High-quality vegetarian protein powder</li>
-                    </ul>
-                </article>
-                <!-- Carbohydrates -->
-                <article class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-2xl font-semibold mb-3">Carbohydrates: The Fuel</h3>
-                    <p class="mb-4">Your primary energy source for endurance activities. Focus on complex carbohydrates for sustained energy release throughout the day.</p>
-                    <h4 class="font-semibold mb-2">Excellent Sources:</h4>
-                    <ul class="list-disc list-inside grid sm:grid-cols-2 gap-x-4">
-                        <li>Oats & Brown Rice</li>
-                        <li>Sweet Potatoes & Squash</li>
-                        <li>Whole-wheat Pasta & Bread</li>
-                        <li>Fruits (Bananas, Berries)</li>
-                        <li>Beets & Carrots</li>
-                    </ul>
-                </article>
-                <!-- Fats -->
-                <article class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-2xl font-semibold mb-3">Fats: The Sustainer</h3>
-                    <p class="mb-4">Crucial for hormone function, vitamin absorption, and as a secondary energy source for long, low-intensity efforts. Focus on unsaturated fats.</p>
-                    <h4 class="font-semibold mb-2">Excellent Sources:</h4>
-                    <ul class="list-disc list-inside grid sm:grid-cols-2 gap-x-4">
-                        <li>Avocados</li>
-                        <li>Olive Oil</li>
-                        <li>Nuts (Walnuts, Almonds)</li>
-                        <li>Seeds (Flax, Chia, Sunflower)</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-
-        <!-- Micronutrients Section -->
-        <section id="micros" class="mb-12 scroll-mt-20">
-            <h2 class="text-3xl font-bold mb-6 border-b-2 border-emerald-500 pb-2">Key Micronutrients</h2>
-             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2">Iron</h3>
-                    <p>Crucial for oxygen transport. Pair plant-based iron sources (lentils, spinach, tofu) with Vitamin C (oranges, bell peppers) to enhance absorption.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2">Calcium & Vitamin D</h3>
-                    <p>Essential for bone health, critical for high-impact sports. Sources include fortified plant milks, tofu, leafy greens, and sensible sun exposure for Vitamin D.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2">Vitamin B12</h3>
-                    <p>Primarily found in animal products, B12 is vital for nerve function and red blood cell formation. Supplementation is strongly recommended for vegetarian athletes.</p>
-                </div>
-                 <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2">Magnesium</h3>
-                    <p>Plays a role in muscle function and energy production. Found in nuts, seeds, whole grains, and leafy greens. Can help with cramping.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2">Zinc</h3>
-                    <p>Supports immune function and protein synthesis. Good sources are beans, nuts, and fortified cereals.</p>
-                </div>
-                 <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2">Electrolytes</h3>
-                    <p>Sodium, potassium, and magnesium are lost through sweat. Replenish with sports drinks, electrolyte tabs, or natural sources like bananas and salted nuts.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Hydration Section -->
-        <section id="hydration" class="mb-12 scroll-mt-20">
-            <h2 class="text-3xl font-bold mb-6 border-b-2 border-emerald-500 pb-2">Hydration Strategy</h2>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <p class="mb-4">Dehydration is a major cause of performance decline. Monitor your urine color (should be light yellow) to gauge hydration status.</p>
-                <ul class="space-y-3">
-                    <li><strong>Daily:</strong> Aim for 2-3 liters of water per day, plus more around training sessions.</li>
-                    <li><strong>Pre-Run:</strong> Drink 500ml of water or electrolyte drink 1-2 hours before a long run.</li>
-                    <li><strong>During Run:</strong> For runs over 60-90 minutes, sip 150-250ml of fluid with electrolytes every 20-30 minutes.</li>
-                    <li><strong>Post-Run:</strong> Rehydrate with water and electrolytes to replace what was lost. Aim to drink 1.5x the weight you lost in sweat.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Ultra Training Section -->
-        <section id="ultra" class="mb-12 scroll-mt-20">
-            <h2 class="text-3xl font-bold mb-6 border-b-2 border-emerald-500 pb-2">Fueling for the 100km Ultra</h2>
-            <div class="bg-white p-6 rounded-lg shadow-sm space-y-4">
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">Practice Your Race Nutrition</h3>
-                    <p>Use your long training runs to test your race-day fueling strategy. Never try anything new on race day. Find out which gels, chews, or real foods (like small potatoes or date balls) work for you.</p>
-                </div>
-                 <div>
-                    <h3 class="text-xl font-semibold mb-2">Carb-Loading</h3>
-                    <p>In the 2-3 days before the race, increase the percentage of carbohydrates in your diet to maximize glycogen stores. Don't stuff yourself, just shift the macro ratio.</p>
-                </div>
-                 <div>
-                    <h3 class="text-xl font-semibold mb-2">Race Day Fueling</h3>
-                    <p>Start fueling early and consistently. Aim for 60-90 grams of carbohydrates per hour, starting about 45-60 minutes into the race. Alternate between different fuel sources to avoid flavor fatigue.</p>
-                </div>
-                 <div>
-                    <h3 class="text-xl font-semibold mb-2">Post-Race Recovery</h3>
-                    <p>Within 30-60 minutes of finishing, consume a meal or shake with a 3:1 or 4:1 ratio of carbohydrates to protein to kickstart the recovery process.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Meal Examples Section -->
-        <section id="meal-examples" class="mb-12 scroll-mt-20">
-            <h2 class="text-3xl font-bold mb-6 border-b-2 border-emerald-500 pb-2">Dynamic Meal Plan Examples</h2>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="grid md:grid-cols-2 gap-6 mb-8">
-                    <!-- Controls for the dynamic meal planner -->
-                    <div>
-                        <label for="volume" class="block text-sm font-medium text-gray-700">Your Training Volume</label>
-                        <select id="volume" name="volume" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md">
-                            <option value="standard">Standard Runner</option>
-                            <option value="highVolume" selected>High Volume Runner</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="dayType" class="block text-sm font-medium text-gray-700">Today's Activity</label>
-                        <select id="dayType" name="dayType" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md">
-                            <option value="restDay">Rest Day</option>
-                            <option value="trainingDay" selected>Training Day</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Container for meal suggestions -->
-                <div id="meal-suggestions" class="space-y-6">
-                    <!-- Meal suggestions will be dynamically inserted here -->
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-12">
-        <div class="max-w-5xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; <span id="year"></span> Oscar S. All Rights Reserved.</p>
-            <p class="text-sm text-gray-400 mt-1">A personalized nutrition reference.</p>
+    <!-- Interactive Race Fueling & Hydration Calculator -->
+    <section id="planner" class="ts-card running-card mb-12 p-6 md:p-8">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="ts-badge ts-badge-running mb-2">Interactive Tool</span>
+          <h2 class="text-2xl font-bold text-white">Ultramarathon Fueling & Hydration Calculator</h2>
+          <p class="text-xs text-slate-400 mt-1">Estimate total exogenous carbs, gel counts, fluid needs, and sodium targets for your target race.</p>
         </div>
-    </footer>
+        <div class="flex gap-2">
+          <button id="save-race-plan-btn" class="ts-btn ts-btn-secondary text-xs">Save Plan</button>
+          <button id="export-race-plan-btn" class="ts-btn ts-btn-secondary text-xs">Export JSON</button>
+        </div>
+      </div>
 
-    <script>
-        // Set the current year in the footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+      <div class="grid lg:grid-cols-12 gap-8">
+        <!-- Input Controls -->
+        <div class="lg:col-span-6 space-y-5">
+          <!-- Preset Buttons -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-2">Race Distance Preset</label>
+            <div class="grid grid-cols-4 gap-2">
+              <button class="preset-btn py-2 text-xs font-bold rounded-lg border border-slate-700 bg-slate-900 text-slate-300 hover:border-emerald-400" data-hours="4.5">50 km</button>
+              <button class="preset-btn py-2 text-xs font-bold rounded-lg border border-slate-700 bg-slate-900 text-slate-300 hover:border-emerald-400" data-hours="8">50 mi</button>
+              <button class="preset-btn py-2 text-xs font-bold rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-400" data-hours="12">100 km</button>
+              <button class="preset-btn py-2 text-xs font-bold rounded-lg border border-slate-700 bg-slate-900 text-slate-300 hover:border-emerald-400" data-hours="24">100 mi</button>
+            </div>
+          </div>
 
-        // --- DYNAMIC MEAL PLANNER SCRIPT ---
+          <!-- Duration Input -->
+          <div>
+            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+              <span>Estimated Race Duration:</span>
+              <span id="label-hours" class="font-mono text-emerald-400 text-sm">12.0 hours</span>
+            </div>
+            <input type="range" id="slider-hours" class="calc-slider" min="2" max="30" step="0.5" value="12">
+          </div>
 
-        const mealPlans = {
-            standard: {
-                restDay: {
-                    breakfast: ["Oatmeal with berries and a sprinkle of chia seeds.", "Tofu scramble with spinach and one slice of whole-wheat toast."],
-                    lunch: ["Large mixed greens salad with chickpeas, cucumber, tomatoes, and a light vinaigrette.", "Lentil soup with a side of whole-grain crackers."],
-                    dinner: ["Baked sweet potato topped with black beans, corn salsa, and avocado.", "Vegetable stir-fry with brown rice."],
-                    snacks: ["An apple with peanut butter.", "A handful of almonds.", "Greek yogurt (or soy alternative)."]
-                },
-                trainingDay: {
-                    breakfast: ["Large bowl of oatmeal with banana, walnuts, and maple syrup.", "Two slices of whole-wheat toast with avocado and a side of scrambled tofu."],
-                    lunch: ["Quinoa bowl with roasted vegetables, black beans, and a tahini dressing.", "Large bean and rice burrito with extra vegetables."],
-                    dinner: ["Whole-wheat pasta with a lentil bolognese sauce and a side salad.", "Seitan stir-fry with broccoli, bell peppers, and a larger portion of brown rice."],
-                    snacks: ["Banana.", "Energy bar.", "Post-workout: Protein shake with a banana.", "Dates with almond butter."]
-                }
-            },
-            highVolume: {
-                restDay: {
-                    breakfast: ["Large bowl of oatmeal with mixed berries, nuts, seeds, and a scoop of protein powder.", "Tofu scramble with a side of avocado toast and sauteed mushrooms."],
-                    lunch: ["Buddha bowl with quinoa, roasted sweet potatoes, chickpeas, kale, and a generous amount of tahini dressing.", "Hearty lentil and vegetable stew."],
-                    dinner: ["Black bean burgers on whole-wheat buns with a large side salad.", "Tempeh curry with coconut milk, mixed vegetables, and brown rice."],
-                    snacks: ["Protein shake.", "Trail mix.", "Rice cakes with hummus.", "Fruit smoothie with spinach."]
-                },
-                trainingDay: {
-                    breakfast: ["Extra-large bowl of oatmeal with two bananas, a large handful of walnuts, chia seeds, and protein powder.", "Breakfast burrito with tofu scramble, black beans, potatoes, and salsa."],
-                    lunch: ["Large portion of whole-wheat pasta with a rich tomato and lentil sauce, topped with nutritional yeast.", "Big quinoa salad with edamame, corn, bell peppers, and a lemon-herb vinaigrette."],
-                    dinner: ["Shepherd's pie with a lentil base and sweet potato topping, served with steamed green beans.", "Large serving of seitan or tofu stir-fry with a double portion of noodles or rice."],
-                    snacks: ["Post-workout: Large protein shake (plant-based) with a banana and oats blended in.", "Energy balls or bars.", "A small bowl of cereal with plant milk.", "Salted potatoes or pretzels during/after long runs."]
-                }
-            }
-        };
+          <!-- Carb Rate -->
+          <div>
+            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+              <span>Target Carb Intake:</span>
+              <span id="label-carbs" class="font-mono text-emerald-400 text-sm">80 g / hr</span>
+            </div>
+            <input type="range" id="slider-carbs" class="calc-slider" min="30" max="110" step="5" value="80">
+            <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+              <span>30g (Mild)</span>
+              <span>60g (Standard)</span>
+              <span>90g (Trained Gut)</span>
+              <span>110g (Elite Dual-Source)</span>
+            </div>
+          </div>
 
-        const volumeSelect = document.getElementById('volume');
-        const dayTypeSelect = document.getElementById('dayType');
-        const suggestionsContainer = document.getElementById('meal-suggestions');
+          <!-- Hydration Rate -->
+          <div>
+            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+              <span>Fluid Intake:</span>
+              <span id="label-fluid" class="font-mono text-emerald-400 text-sm">600 ml / hr</span>
+            </div>
+            <input type="range" id="slider-fluid" class="calc-slider" min="350" max="900" step="50" value="600">
+            <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+              <span>Cool weather (400ml)</span>
+              <span>Moderate (600ml)</span>
+              <span>Hot / Humid (800ml+)</span>
+            </div>
+          </div>
+        </div>
 
-        function updateMeals() {
-            const volume = volumeSelect.value;
-            const dayType = dayTypeSelect.value;
-            const plan = mealPlans[volume][dayType];
+        <!-- Calculated Summary Outputs -->
+        <div class="lg:col-span-6 flex flex-col justify-between p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+              <span class="text-sm text-slate-400">Total Exogenous Carbs:</span>
+              <span id="calc-total-carbs" class="text-2xl font-black text-emerald-400 font-mono">960 g</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+              <span class="text-sm text-slate-400">Standard Gel Equivalent (~25g each):</span>
+              <span id="calc-gel-count" class="text-lg font-bold text-slate-200 font-mono">~38 gels</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+              <span class="text-sm text-slate-400">Total Hydration Volume:</span>
+              <span id="calc-total-fluid" class="text-lg font-bold text-sky-400 font-mono">7.2 Liters</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+              <span class="text-sm text-slate-400">Estimated Sodium Replacement:</span>
+              <span id="calc-total-sodium" class="text-lg font-bold text-amber-400 font-mono">~5,760 mg</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-slate-400">Total Race Fuel Energy:</span>
+              <span id="calc-total-energy" class="text-lg font-bold text-slate-300 font-mono">3,840 kcal</span>
+            </div>
+          </div>
 
-            let html = '';
+          <div class="mt-5 p-3 rounded-lg bg-emerald-950/20 border border-emerald-900/40 text-xs text-emerald-300/80 leading-relaxed">
+            💡 <strong>Pro Tip:</strong> Mix energy sources to prevent palate fatigue: combine maltodextrin drink mixes, glucose-fructose gels, and real food (boiled salted potatoes or date bites) at aid stations.
+          </div>
+        </div>
+      </div>
+    </section>
 
-            for (const mealType in plan) {
-                html += `<div class="border-t pt-4">`;
-                html += `<h3 class="text-xl font-semibold capitalize text-emerald-700">${mealType}</h3>`;
-                html += '<ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">';
-                plan[mealType].forEach(item => {
-                    html += `<li>${item}</li>`;
-                });
-                html += '</ul>';
-                html += `</div>`;
-            }
+    <!-- Core Principles -->
+    <section id="principles" class="mb-14 scroll-mt-28">
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-2xl font-bold text-white">Core Nutrition Principles</h2>
+        <span class="h-0.5 flex-1 bg-gradient-to-r from-emerald-500/40 to-transparent"></span>
+      </div>
 
-            suggestionsContainer.innerHTML = html;
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="ts-card running-card p-6">
+          <h3 class="text-lg font-bold text-emerald-400 mb-2">Energy Balance & Availability</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Consume enough calories to match your high expenditure from endurance running and cross-training. Chronic low energy availability (LEA) suppresses endocrine recovery, compromises bone density, and spikes injury risk.
+          </p>
+        </div>
+
+        <div class="ts-card running-card p-6">
+          <h3 class="text-lg font-bold text-emerald-400 mb-2">Nutrient Timing</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Prioritize easily digestible carbohydrates before and during workouts for immediate glycogen replenishment, followed by a 3:1 to 4:1 carb-to-protein recovery meal within 45 minutes of finishing.
+          </p>
+        </div>
+
+        <div class="ts-card running-card p-6">
+          <h3 class="text-lg font-bold text-emerald-400 mb-2">Plant-Based Nutrient Density</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Focus on unprocessed, micronutrient-dense plant sources: legumes, whole grains, seeds, and vibrant dark leafy vegetables to supply high polyphenols and anti-inflammatory compounds.
+          </p>
+        </div>
+
+        <div class="ts-card running-card p-6">
+          <h3 class="text-lg font-bold text-emerald-400 mb-2">Gut Adaptation Consistency</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Intestinal transport enzymes (SGLT1 and GLUT5) upregulate with habitual exposure. Train your stomach to tolerate high carb concentrations on all weekly long runs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vegetarian Macronutrients -->
+    <section id="macros" class="mb-14 scroll-mt-28">
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-2xl font-bold text-white">Vegetarian Macronutrients</h2>
+        <span class="h-0.5 flex-1 bg-gradient-to-r from-emerald-500/40 to-transparent"></span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="ts-card running-card p-6">
+          <div class="text-2xl mb-2">🧱</div>
+          <h3 class="text-lg font-bold text-white mb-2">Protein: The Builder</h3>
+          <p class="text-xs text-slate-400 mb-3">Target 1.4 – 1.8g per kg body weight daily for muscle tissue repair and immune resilience.</p>
+          <div class="text-xs text-slate-300 font-semibold mb-1">Key Sources:</div>
+          <ul class="text-xs text-slate-400 space-y-1">
+            <li>&bull; Lentils, Tempeh & Firm Tofu</li>
+            <li>&bull; Edamame & Seitan (High Leucine)</li>
+            <li>&bull; Quinoa & Hemp / Chia Seeds</li>
+            <li>&bull; Pea / Rice Protein Isolates</li>
+          </ul>
+        </div>
+
+        <div class="ts-card running-card p-6">
+          <div class="text-2xl mb-2">⚡</div>
+          <h3 class="text-lg font-bold text-white mb-2">Carbohydrates: The Fuel</h3>
+          <p class="text-xs text-slate-400 mb-3">Primary engine for high-output aerobic efforts. Emphasize complex carbs in daily diet, simple sugars during runs.</p>
+          <div class="text-xs text-slate-300 font-semibold mb-1">Key Sources:</div>
+          <ul class="text-xs text-slate-400 space-y-1">
+            <li>&bull; Rolled Oats & Sourdough Bread</li>
+            <li>&bull; Sweet Potatoes, Squash & Beets</li>
+            <li>&bull; Brown Rice, Polenta & Buckwheat</li>
+            <li>&bull; Bananas, Medjool Dates & Berries</li>
+          </ul>
+        </div>
+
+        <div class="ts-card running-card p-6">
+          <div class="text-2xl mb-2">🥑</div>
+          <h3 class="text-lg font-bold text-white mb-2">Fats: The Sustainer</h3>
+          <p class="text-xs text-slate-400 mb-3">Crucial for steroid hormone synthesis, fat-soluble vitamin uptake (A, D, E, K), and base metabolic oxidation.</p>
+          <div class="text-xs text-slate-300 font-semibold mb-1">Key Sources:</div>
+          <ul class="text-xs text-slate-400 space-y-1">
+            <li>&bull; Extra Virgin Olive Oil & Avocados</li>
+            <li>&bull; Walnuts & Raw Almonds</li>
+            <li>&bull; Ground Flaxseed & Pumpkin Seeds</li>
+            <li>&bull; Tahini & Natural Peanut Butter</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Micronutrients Grid -->
+    <section id="micros" class="mb-14 scroll-mt-28">
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-2xl font-bold text-white">Micronutrients & Electrolytes</h2>
+        <span class="h-0.5 flex-1 bg-gradient-to-r from-emerald-500/40 to-transparent"></span>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="ts-card p-5">
+          <h4 class="font-bold text-emerald-400 text-sm mb-1">Iron & Ferritin</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Essential for hemoglobin and cellular oxygen transport. Pair non-heme plant iron (lentils, spinach) with Vitamin C (citrus, peppers) and avoid tannins/coffee around iron-rich meals.
+          </p>
+        </div>
+
+        <div class="ts-card p-5">
+          <h4 class="font-bold text-emerald-400 text-sm mb-1">Vitamin B12</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Vital for nerve transmission and erythropoiesis (red blood cell production). Non-negotiable daily supplementation (cyanocobalamin or methylcobalamin) for vegetarian athletes.
+          </p>
+        </div>
+
+        <div class="ts-card p-5">
+          <h4 class="font-bold text-emerald-400 text-sm mb-1">Calcium & Vitamin D3</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Structural foundation for bone remodeling under repetitive ultra running ground reaction forces. Fortified plant milks and sensible sun exposure or D3 drops.
+          </p>
+        </div>
+
+        <div class="ts-card p-5">
+          <h4 class="font-bold text-emerald-400 text-sm mb-1">Sodium & Potassium</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Maintains extracellular fluid balance and action potential in skeletal muscle. Sweat sodium loss ranges from 800–1200mg/L; replenish with targeted electrolyte caps.
+          </p>
+        </div>
+
+        <div class="ts-card p-5">
+          <h4 class="font-bold text-emerald-400 text-sm mb-1">Magnesium</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Cofactor in ATP synthesis and neuromuscular relaxation. Rich in pumpkin seeds, leafy greens, dark chocolate, and whole grains.
+          </p>
+        </div>
+
+        <div class="ts-card p-5">
+          <h4 class="font-bold text-emerald-400 text-sm mb-1">Zinc</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Supports immune barrier integrity and cellular repair following systemic muscular breakdown during multi-hour efforts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hydration Strategy & 100km Ultra -->
+    <div class="grid lg:grid-cols-2 gap-8 mb-14">
+      <section id="hydration" class="ts-card p-6 scroll-mt-28">
+        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <span>💧</span> Hydration Strategy
+        </h3>
+        <ul class="space-y-3 text-sm text-slate-300">
+          <li class="flex gap-2">
+            <span class="text-emerald-400 font-bold">&bull;</span>
+            <span><strong>Baseline:</strong> Drink 2.5–3.5 liters of fluid daily, monitoring first-morning urine color (pale straw target).</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-emerald-400 font-bold">&bull;</span>
+            <span><strong>Pre-Race:</strong> 500ml water with 500mg sodium 90 minutes before race start; stop drinking 30 min before to empty bladder.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-emerald-400 font-bold">&bull;</span>
+            <span><strong>During Effort:</strong> Small frequent sips (150–200ml every 15–20 minutes) rather than large volumes that slosh in the stomach.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-emerald-400 font-bold">&bull;</span>
+            <span><strong>Post-Run:</strong> Replace 125–150% of body mass lost in sweat over 2–4 hours with sodium-rich broth or electrolyte fluids.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="ultra" class="ts-card p-6 scroll-mt-28">
+        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <span>🏔️</span> 100km Ultra Protocols
+        </h3>
+        <ul class="space-y-3 text-sm text-slate-300">
+          <li class="flex gap-2">
+            <span class="text-emerald-400 font-bold">&bull;</span>
+            <span><strong>Carb Loading:</strong> Increase carbohydrate intake to 8–10g/kg body weight for 36–48h pre-race without excess fiber.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-emerald-400 font-bold">&bull;</span>
+            <span><strong>Start Fueling Early:</strong> Take your first gel or fuel at minute 30–45. Once you fall behind on glycogen, catch-up is physiologically impossible.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-emerald-400 font-bold">&bull;</span>
+            <span><strong>Palate Fatigue Plan:</strong> After 6–8 hours, sweet flavors nauseate the palate. Pack salted boiled potatoes, pretzels, or pickled ginger.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-emerald-400 font-bold">&bull;</span>
+            <span><strong>Emergency Aid:</strong> Keep 100mg caffeine gel in reserve for severe mental dips between kilometer 70 and 85.</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Dynamic Meal Plan -->
+    <section id="meals" class="ts-card running-card p-6 md:p-8 scroll-mt-28">
+      <h2 class="text-2xl font-bold text-white mb-2">Dynamic Vegetarian Meal Planner</h2>
+      <p class="text-sm text-slate-400 mb-6">Select your training volume and day structure to generate tailored meal examples.</p>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-1">Training Volume</label>
+          <select id="volume" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white text-sm outline-none focus:border-emerald-400">
+            <option value="standard">Standard Runner (30-60 km/week)</option>
+            <option value="highVolume" selected>High Volume & Ultra Prep (70-120 km/week)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-1">Today's Activity Type</label>
+          <select id="dayType" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white text-sm outline-none focus:border-emerald-400">
+            <option value="restDay">Rest & Recovery Day</option>
+            <option value="trainingDay" selected>Hard Workout / Long Run Day</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="meal-suggestions" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="ts-footer">
+    <p>&copy; <span id="ts-year"></span> threepscoot &bull; Built with modern zero-build web standards &bull; <a href="https://github.com/oscarsaleta/oscarsaleta.github.io" target="_blank">GitHub</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/cmdk.js"></script>
+
+  <script>
+    document.getElementById('ts-year').textContent = new Date().getFullYear();
+
+    // Race Calculator
+    const sliderHours = document.getElementById('slider-hours');
+    const sliderCarbs = document.getElementById('slider-carbs');
+    const sliderFluid = document.getElementById('slider-fluid');
+
+    const labelHours = document.getElementById('label-hours');
+    const labelCarbs = document.getElementById('label-carbs');
+    const labelFluid = document.getElementById('label-fluid');
+
+    const calcTotalCarbs = document.getElementById('calc-total-carbs');
+    const calcGelCount = document.getElementById('calc-gel-count');
+    const calcTotalFluid = document.getElementById('calc-total-fluid');
+    const calcTotalSodium = document.getElementById('calc-total-sodium');
+    const calcTotalEnergy = document.getElementById('calc-total-energy');
+
+    function updateCalculator() {
+      const hours = parseFloat(sliderHours.value);
+      const carbsRate = parseFloat(sliderCarbs.value);
+      const fluidRate = parseFloat(sliderFluid.value);
+
+      labelHours.textContent = `${hours.toFixed(1)} hours`;
+      labelCarbs.textContent = `${carbsRate} g / hr`;
+      labelFluid.textContent = `${fluidRate} ml / hr`;
+
+      const totalCarbs = Math.round(hours * carbsRate);
+      const gels = Math.round(totalCarbs / 25);
+      const totalFluidLiters = ((hours * fluidRate) / 1000).toFixed(1);
+      const totalSodium = Math.round(hours * (fluidRate * 0.8)); // ~800mg/L average sweat loss replacement
+      const totalEnergy = totalCarbs * 4;
+
+      calcTotalCarbs.textContent = `${totalCarbs} g`;
+      calcGelCount.textContent = `~${gels} gels`;
+      calcTotalFluid.textContent = `${totalFluidLiters} Liters`;
+      calcTotalSodium.textContent = `~${totalSodium.toLocaleString()} mg`;
+      calcTotalEnergy.textContent = `${totalEnergy.toLocaleString()} kcal`;
+    }
+
+    sliderHours.addEventListener('input', updateCalculator);
+    sliderCarbs.addEventListener('input', updateCalculator);
+    sliderFluid.addEventListener('input', updateCalculator);
+
+    // Presets
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.preset-btn').forEach(b => {
+          b.classList.remove('border-emerald-500', 'bg-emerald-950/40', 'text-emerald-400');
+          b.classList.add('border-slate-700', 'bg-slate-900', 'text-slate-300');
+        });
+        btn.classList.remove('border-slate-700', 'bg-slate-900', 'text-slate-300');
+        btn.classList.add('border-emerald-500', 'bg-emerald-950/40', 'text-emerald-400');
+
+        sliderHours.value = btn.dataset.hours;
+        updateCalculator();
+      });
+    });
+
+    updateCalculator();
+
+    // Local Storage Race Plan
+    const RACE_STORAGE_KEY = 'threepscoot_race_plan';
+    document.getElementById('save-race-plan-btn').addEventListener('click', () => {
+      const plan = {
+        hours: sliderHours.value,
+        carbsRate: sliderCarbs.value,
+        fluidRate: sliderFluid.value,
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem(RACE_STORAGE_KEY, JSON.stringify(plan));
+      alert('Race fueling plan saved to your browser local storage!');
+    });
+
+    document.getElementById('export-race-plan-btn').addEventListener('click', () => {
+      const plan = {
+        hours: sliderHours.value,
+        carbsRate: sliderCarbs.value,
+        fluidRate: sliderFluid.value,
+        totalCarbs: calcTotalCarbs.textContent,
+        totalFluid: calcTotalFluid.textContent,
+        totalSodium: calcTotalSodium.textContent,
+        timestamp: new Date().toISOString()
+      };
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(plan, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", `threepscoot_race_plan_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+
+    // Dynamic Meal Plans
+    const mealPlans = {
+      standard: {
+        restDay: {
+          breakfast: ["Oatmeal with berries and chia seeds.", "Tofu scramble with spinach & whole-wheat toast."],
+          lunch: ["Mixed greens salad with chickpeas, avocado & olive oil.", "Lentil soup with whole-grain crackers."],
+          dinner: ["Baked sweet potato with black beans, corn & guacamole.", "Vegetable stir-fry with brown rice & edamame."],
+          snacks: ["Apple with natural peanut butter.", "Handful of raw walnuts.", "Soy yogurt with flaxseed."]
+        },
+        trainingDay: {
+          breakfast: ["Large bowl of oatmeal with banana, walnuts & maple syrup.", "Avocado toast with scrambled tofu."],
+          lunch: ["Quinoa bowl with roasted sweet potato, black beans & tahini.", "Large burrito with beans, rice & guacamole."],
+          dinner: ["Whole-wheat pasta with rich red lentil bolognese.", "Seitan stir-fry with broccoli, peppers & jasmine rice."],
+          snacks: ["Banana & medjool dates.", "Plant protein shake with oats.", "Salted rice cakes with almond butter."]
         }
+      },
+      highVolume: {
+        restDay: {
+          breakfast: ["Oatmeal with mixed berries, hemp seeds & plant protein powder.", "Tofu scramble with avocado & sauteed mushrooms."],
+          lunch: ["Buddha bowl with quinoa, roasted sweet potatoes, kale & tahini.", "Hearty lentil, bean & root vegetable stew."],
+          dinner: ["Black bean tempeh burgers on whole-wheat buns.", "Tempeh coconut curry with mixed greens & brown rice."],
+          snacks: ["Protein smoothie with spinach & berries.", "Trail mix with raisins & almonds.", "Hummus with whole-grain pita."]
+        },
+        trainingDay: {
+          breakfast: ["Mega oatmeal bowl: 2 bananas, walnuts, chia seeds & plant protein.", "Breakfast burrito with tofu scramble, black beans & hashbrowns."],
+          lunch: ["Large whole-wheat pasta with lentil marinara & nutritional yeast.", "Quinoa salad with edamame, corn, peppers & pumpkin seeds."],
+          dinner: ["Shepherd's pie with lentil mushroom base & sweet potato mash.", "Double-portion seitan stir-fry with soba noodles & greens."],
+          snacks: ["Post-run shake: plant protein, oats, 2 bananas.", "Energy date balls with sea salt.", "Boiled salted potatoes & pretzels."]
+        }
+      }
+    };
 
-        // Add event listeners to update the meals when selections change
-        volumeSelect.addEventListener('change', updateMeals);
-        dayTypeSelect.addEventListener('change', updateMeals);
+    const volumeSelect = document.getElementById('volume');
+    const dayTypeSelect = document.getElementById('dayType');
+    const mealSuggestions = document.getElementById('meal-suggestions');
 
-        // Initial call to populate the meal suggestions on page load
-        updateMeals();
+    function updateMeals() {
+      const vol = volumeSelect.value;
+      const day = dayTypeSelect.value;
+      const plan = mealPlans[vol][day];
 
-    </script>
+      let html = '';
+      for (const meal in plan) {
+        html += `
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">${meal}</h4>
+            <ul class="text-xs text-slate-300 space-y-2">
+              ${plan[meal].map(i => `<li>&bull; ${i}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+      mealSuggestions.innerHTML = html;
+    }
+
+    volumeSelect.addEventListener('change', updateMeals);
+    dayTypeSelect.addEventListener('change', updateMeals);
+    updateMeals();
+  </script>
 </body>
 </html>
-

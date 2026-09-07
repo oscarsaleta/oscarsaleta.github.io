@@ -1,82 +1,58 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f8f9fa;
-    color: #333;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
+/* Catalan Studio Specific Enhancements */
+
+.catalan-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 5rem;
+  width: 100%;
 }
 
-header {
-    text-align: center;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
+.tense-btn {
+  transition: all var(--transition-fast);
+  cursor: pointer;
 }
 
-h1, h2, h3 {
-    color: #0056b3;
+.tense-btn.active {
+  background: var(--accent-catalan);
+  color: #090d16;
 }
 
-h2 {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
+.conjugation-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+.conjugation-table tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background var(--transition-fast);
 }
 
-th, td {
-    border: 1px solid #ccc;
-    padding: 12px;
-    text-align: left;
+.conjugation-table tr:hover {
+  background: rgba(255, 255, 255, 0.03);
 }
 
-th {
-    background-color: #e9ecef;
+.conjugation-table tr:last-child {
+  border-bottom: none;
 }
 
-td b {
-    color: #d9534f;
+.conjugation-table td {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
 }
 
-.note {
-    font-style: italic;
-    color: #555;
-    background-color: #fff3cd;
-    border-left: 4px solid #ffeeba;
-    padding: 10px;
+.conjugation-table td.pronoun {
+  color: var(--text-muted);
+  font-weight: 500;
+  width: 35%;
+  font-family: var(--font-mono);
 }
 
-.conjugation-tables {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+.conjugation-table td.verb-form {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-weight: 600;
 }
 
-.verb-ending {
-    flex: 1;
-    min-width: 250px;
-}
-
-#conjugator {
-    margin-top: 30px;
-}
-
-select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-}
-
-#conjugation-result table {
-    margin-top: 0;
+.conjugation-table td.verb-form b {
+  color: #c084fc;
 }

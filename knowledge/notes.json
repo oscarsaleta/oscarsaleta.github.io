@@ -1,0 +1,57 @@
+[
+  {
+    "id": "espresso-dialing-and-recipes",
+    "title": "Espresso Dial-In Fundamentals & Modern Recipes",
+    "category": "Coffee",
+    "badgeClass": "ts-badge-coffee",
+    "tags": ["espresso", "dial-in", "turbo-shot", "allonge", "sprover", "wdt", "recipes"],
+    "summary": "Lance Hedrick espresso dialing methodology: the 4 foundation constants, puck prep fluid dynamics, and modern high-ratio extractions relative to baseline grind.",
+    "readTime": "5 min read",
+    "date": "2026-09",
+    "file": "content/espresso-dialing-and-recipes.md"
+  },
+  {
+    "id": "ultra-training-protocols",
+    "title": "Ultra Marathon Fueling & Gut Training Protocols",
+    "category": "Running",
+    "badgeClass": "ts-badge-running",
+    "tags": ["ultra", "nutrition", "carbs", "hydration", "gut-training"],
+    "summary": "Comprehensive endurance physiology, exogenous carbohydrate intake rates (up to 90g-120g/hr), sodium replacement, and GI conditioning for 50km to 100km ultramarathons.",
+    "readTime": "5 min read",
+    "date": "2026-09",
+    "file": "content/ultra-training-protocols.md"
+  },
+  {
+    "id": "coffee-extraction-fundamentals",
+    "title": "Coffee Extraction & Dial-in Fundamentals",
+    "category": "Coffee",
+    "badgeClass": "ts-badge-coffee",
+    "tags": ["coffee", "pourover", "tds", "extraction", "v60", "grind"],
+    "summary": "Technical breakdown of Total Dissolved Solids (TDS), Extraction Yield (EY), agitation dynamics, and brew parameter troubleshooting heuristics.",
+    "readTime": "4 min read",
+    "date": "2026-09",
+    "file": "content/coffee-extraction-fundamentals.md"
+  },
+  {
+    "id": "catalan-verb-patterns",
+    "title": "Catalan Verb Patterns & Mnemonic Anchors",
+    "category": "Catalan",
+    "badgeClass": "ts-badge-catalan",
+    "tags": ["catalan", "grammar", "verbs", "periphrastic-past", "language"],
+    "summary": "High-frequency irregular patterns, inchoative verb conjugation paradigms, and mastering the periphrastic past tense (vaig + infinitive).",
+    "readTime": "4 min read",
+    "date": "2026-09",
+    "file": "content/catalan-verb-patterns.md"
+  },
+  {
+    "id": "developer-cheatsheet",
+    "title": "Developer CLI & Git Cheatsheet",
+    "category": "Tech",
+    "badgeClass": "ts-badge-kb",
+    "tags": ["git", "terminal", "zsh", "macos", "cli", "tools"],
+    "summary": "Distilled personal quick-reference for surgical Git history, worktrees, undoing mistakes, local static testing servers, and macOS shell efficiency.",
+    "readTime": "3 min read",
+    "date": "2026-09",
+    "file": "content/developer-cheatsheet.md"
+  }
+]
