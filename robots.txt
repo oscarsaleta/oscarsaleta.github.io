@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /AGENTS.md
+Disallow: /justfile
+Disallow: /Justfile

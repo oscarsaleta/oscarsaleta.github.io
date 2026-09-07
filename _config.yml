@@ -1,0 +1,9 @@
+# Jekyll configuration for GitHub Pages (threepscoot.cc)
+# Exclude repo-only files, agent documentation, and local tooling from site deployment
+exclude:
+  - AGENTS.md
+  - justfile
+  - Justfile
+  - .git
+  - .github
+  - scratch
